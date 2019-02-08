@@ -15,16 +15,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        VenueAPIClient.searchVenue(search: "") { (appError, data) in
-            if let appError = appError {
-                print(appError.errorMessage)
-            } else if let search = data {
-                self.testing = search
-            }
-        }
-        print()
+        print("Hello")
     }
-
 
 }
 
