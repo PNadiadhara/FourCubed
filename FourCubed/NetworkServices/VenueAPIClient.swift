@@ -9,14 +9,15 @@
 import Foundation
 
 final class VenueAPIClient {
-    static func searchVenue(completionHandler: @escaping (AppError?, NewVenueData.VenueArray?) -> Void) {
+    static func searchVenue(completionHandler: @escaping (AppError?, VenueData?) -> Void) {
         NetworkHelper.shared.performDataTask(endpointURLString: "https://api.foursquare.com/v2/venues/search?ll=40.7484,-73.9857&client_id=\(SecretKeys.ClientID)&client_secret=\(SecretKeys.APIKey)&v=20190201",  httpMethod: "GET", httpBody: nil) { (error, data, response) in
-            if let _ = error {
+            if let apiCallError = error {
+                print(apiCallError)
                 completionHandler(AppError.badURL("URL is bad"), nil)
             }
             if let data = data {
                 do {
-                  let data = try JSONDecoder().decode(NewVenueData.VenueArray.self, from: data)
+                    let data = try JSONDecoder().decode(VenueData.self, from: data)
                     print("Data is \(data)")
                 } catch {
                     print("Decoding error is  \(AppError.decodingError(error)), nil)")
