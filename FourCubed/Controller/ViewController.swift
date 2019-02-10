@@ -9,14 +9,14 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var venueView = VenueView()
     
-    var testing = [venues]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        print("Hello")
+        title = "Home Page"
+        self.view.backgroundColor = .white
+        view.addSubview(venueView)
+       
     }
-
 }
-

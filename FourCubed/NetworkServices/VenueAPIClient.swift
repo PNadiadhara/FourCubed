@@ -8,28 +8,21 @@
 
 import Foundation
 
-
-//final class VenueAPIClient {
-//
-//    static func searchVenue(search: String, completionHandler: @escaping (AppError?, [VenueData]?) -> Void) {
-//
-//        NetworkHelper.shared.performDataTask(endpointURLString: "https://api.foursquare.com/v2/venues/search?ll=40.7484,-73.9857&client_id=\(SecretKeys.clientID)&client_secret=\(SecretKeys.clientSecret)&v=20190201", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
-//            if let appError = appError {
-//                completionHandler(appError, nil)
-//            }
-//            if let data = data {
-//                do {
-//                    let venueData = try JSONDecoder().decode(VenueData.self, from: data)
-//                    if let response = venueData.response {
-//
-//                            completionHandler(nil, response)
-//                    }
-//
-//                } catch {
-//                    completionHandler(AppError.decodingError(error), nil)
-//                }
-//            }
-//        }
-//    }
-//
-//}
+final class VenueAPIClient {
+    static func searchVenue(completionHandler: @escaping (AppError?, NewVenueData.VenueArray?) -> Void) {
+        NetworkHelper.shared.performDataTask(endpointURLString: "https://api.foursquare.com/v2/venues/search?ll=40.7484,-73.9857&client_id=\(SecretKeys.ClientID)&client_secret=\(SecretKeys.APIKey)&v=20190201",  httpMethod: "GET", httpBody: nil) { (error, data, response) in
+            if let _ = error {
+                completionHandler(AppError.badURL("URL is bad"), nil)
+            }
+            if let data = data {
+                do {
+                  let data = try JSONDecoder().decode(NewVenueData.VenueArray.self, from: data)
+                    print("Data is \(data)")
+                } catch {
+                    print("Decoding error is  \(AppError.decodingError(error)), nil)")
+                    print("Error is \(error)")
+                }
+            }
+        }
+    }
+}

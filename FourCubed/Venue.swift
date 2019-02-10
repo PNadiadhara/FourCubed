@@ -8,17 +8,39 @@
 
 import Foundation
 
-struct VenueData : Codable {
-    let response : [venues]?
+
+struct NewVenueData : Codable {
+    
+    struct Response : Codable {
+        let response: Dictionary<String, [newVenue]>
+    }
+    
+    struct VenueArray : Codable {
+        let venues: [newVenue]
+    }
+    
+    struct newVenue : Codable {
+        let id: String
+    }
+    
+    let response: Response
+    
 }
 
-struct venues : Codable {
-    let id : String
-    let name : String
-    let location : LocationData
-    let categories : [CatagoryData]
-    let delivery : DeliveryInfo?
-    
+struct VenueData : Codable {
+    let response: Venues
+}
+
+struct Venues : Codable {
+    let venues: [venue]
+}
+
+struct venue : Codable {
+    let id: String
+    let name: String
+//    let location : LocationData
+//    let categories : [CatagoryData]
+//    let delivery : DeliveryInfo?
 }
 
 struct LocationData : Codable {
