@@ -12,11 +12,15 @@ class TabBarViewController: UITabBarController {
 
     var mainViewController = UINavigationController.init(rootViewController: ViewController())
     var secondViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
+    var thirdViewController = UINavigationController.init(rootViewController: SettingsViewController())
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewControllers([mainViewController, secondViewController], animated: true)
+        setViewControllers([mainViewController, secondViewController, thirdViewController], animated: true)
         mainViewController.tabBarItem = UITabBarItem(title: "Main Page", image: UIImage(named: "icons8-home"), tag: 0)
-        secondViewController.tabBarItem = UITabBarItem(title: "Collection", image: UIImage(named: "icons8-collectibles"), tag: 0)
+        secondViewController.tabBarItem = UITabBarItem(title: "Collection", image: UIImage(named: "icons8-collectibles"), tag: 1)
+        thirdViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings-icon"), tag: 2)
+
     }
 }
