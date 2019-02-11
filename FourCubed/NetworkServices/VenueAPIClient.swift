@@ -13,7 +13,7 @@ import Foundation
 //
 //    static func searchVenue(search: String, completionHandler: @escaping (AppError?, [VenueData]?) -> Void) {
 //
-//        NetworkHelper.shared.performDataTask(endpointURLString: "https://api.foursquare.com/v2/venues/search?ll=40.7484,-73.9857&client_id=\(SecretKeys.clientID)&client_secret=\(SecretKeys.clientSecret)&v=20190201", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
+//        NetworkHelper.shared.performDataTask(endpointURLString: "https://api.foursquare.com/v2/venues/search?ll=40.7484,-73.9857&client_id=\(SecretKeys.ClientID)&client_secret=\(SecretKeys.ClientSecret)&v=20190201", httpMethod: "GET", httpBody: nil) { (appError, data, httpResponse) in
 //            if let appError = appError {
 //                completionHandler(appError, nil)
 //            }
