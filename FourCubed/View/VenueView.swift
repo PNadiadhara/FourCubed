@@ -10,13 +10,12 @@ import UIKit
 import MapKit
 
 class VenueView: UIView {
-    var venueCell = VenueCell()
     
     lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize.init(width: 240, height: 280)
-        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
-        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize.init(width: 220, height: 240)
+        layout.sectionInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 20, right: 10)
+        layout.scrollDirection = .horizontal
         let collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor(hue: 0.2, saturation: 0.02, brightness: 0.9, alpha: 1.0)
         return collectionView
@@ -56,14 +55,6 @@ class VenueView: UIView {
     }()
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        addSubview(mapViewKit)
-        addSubview(viewDetail)
-        addSubview(searchBarView)
-        addSubview(buttonOne)
-        addSubview(buttonTwo)
-        addSubview(buttonTwoThree)
-        addSubview(buttonTwoFour)
-        addSubview(myCollectionView)
         commonInit()
         setUpVenueCnstraints()
     }
@@ -75,11 +66,20 @@ class VenueView: UIView {
         self.myCollectionView.register(VenueCell.self, forCellWithReuseIdentifier: "venuesCell")
     }
     private func setUpVenueCnstraints() {
+        addSubview(mapViewKit)
+        addSubview(viewDetail)
+        addSubview(searchBarView)
+        addSubview(buttonOne)
+        addSubview(buttonTwo)
+        addSubview(buttonTwoThree)
+        addSubview(buttonTwoFour)
+        addSubview(myCollectionView)
+        
         myCollectionView.translatesAutoresizingMaskIntoConstraints = false
         myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 450).isActive = true
         myCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        myCollectionView.heightAnchor.constraint(equalTo: heightAnchor, constant: -550).isActive = true
+        myCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         mapViewKit.translatesAutoresizingMaskIntoConstraints = false
         mapViewKit.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2).isActive = true

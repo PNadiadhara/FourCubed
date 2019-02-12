@@ -10,4 +10,27 @@ import UIKit
 
 class VenueCell: UICollectionViewCell {
     
+    lazy var imageView: UIImageView = {
+        let image = UIImageView()
+        return image
+    }()
+    override init(frame: CGRect) {
+        super.init(frame: UIScreen.main.bounds)
+        backgroundColor = UIColor(hue: 0.2, saturation: 0.02, brightness: 0.7, alpha: 1.0)
+        commonInit()
+        setConstraints()
+    }
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    private func commonInit() {
+        setConstraints()
+    }
+    private func setConstraints() {
+        addSubview(imageView)
+        imageView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    }
 }
