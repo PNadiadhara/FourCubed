@@ -33,6 +33,9 @@
 		BFECFEEF220E22DA001A4ABE /* VenueAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEEE220E22DA001A4ABE /* VenueAPIClient.swift */; };
 		BFECFEF1220E2E84001A4ABE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEF0220E2E84001A4ABE /* String+Extensions.swift */; };
 		BFECFEF3220E2EC9001A4ABE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */; };
+		BFFA9EE72213762E0072A95D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA9EE62213762E0072A95D /* SettingsView.swift */; };
+		BFFA9EEA2213851C0072A95D /* SetttingLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA9EE92213851C0072A95D /* SetttingLocationTableViewCell.swift */; };
+		BFFA9EEE22147B2B0072A95D /* SearchDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA9EED22147B2B0072A95D /* SearchDetailTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +67,9 @@
 		BFECFEEE220E22DA001A4ABE /* VenueAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueAPIClient.swift; sourceTree = "<group>"; };
 		BFECFEF0220E2E84001A4ABE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		BFFA9EE62213762E0072A95D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BFFA9EE92213851C0072A95D /* SetttingLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetttingLocationTableViewCell.swift; sourceTree = "<group>"; };
+		BFFA9EED22147B2B0072A95D /* SearchDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 			children = (
 				670B84FA220F706800C8C0E5 /* VenueView.swift */,
 				67DA9A57221216320041DEFD /* ListView.swift */,
+				BFFA9EE62213762E0072A95D /* SettingsView.swift */,
 				9000062D221368B30060112C /* FavoriteView.swift */,
 				9000062F221368F50060112C /* SearchDetailView.swift */,
 			);
@@ -106,6 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				67DA9A5922121B3E0041DEFD /* VenueCell.swift */,
+				BFFA9EE92213851C0072A95D /* SetttingLocationTableViewCell.swift */,
+				BFFA9EED22147B2B0072A95D /* SearchDetailTableViewCell.swift */,
 				90000631221369260060112C /* FavoriteCollectionViewCell.swift */,
 			);
 			path = Cell;
@@ -243,6 +252,10 @@
 				9000062C221368670060112C /* DataPersistenceManager.swift in Sources */,
 				90000632221369260060112C /* FavoriteCollectionViewCell.swift in Sources */,
 				67DA9A58221216320041DEFD /* ListView.swift in Sources */,
+				BFFA9EEA2213851C0072A95D /* SetttingLocationTableViewCell.swift in Sources */,
+				BFECFEEF220E22DA001A4ABE /* VenueAPIClient.swift in Sources */,
+				BFECFECD220DF3B3001A4ABE /* ViewController.swift in Sources */,
+				BFFA9EEE22147B2B0072A95D /* SearchDetailTableViewCell.swift in Sources */,
 				90000621221362270060112C /* FavoriteCollectionViewController.swift in Sources */,
 				BFECFEEF220E22DA001A4ABE /* VenueAPIClient.swift in Sources */,
 				BFECFECD220DF3B3001A4ABE /* ViewController.swift in Sources */,
@@ -261,6 +274,7 @@
 				BFECFECB220DF3B3001A4ABE /* AppDelegate.swift in Sources */,
 				67DA9A56221215230041DEFD /* ListViewController.swift in Sources */,
 				BFECFEEB220E20A8001A4ABE /* ImageHelper.swift in Sources */,
+				BFFA9EE72213762E0072A95D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H6HD3SW977;
+				DEVELOPMENT_TEAM = 2X456QR9DN;
 				INFOPLIST_FILE = FourCubed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -417,7 +431,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H6HD3SW977;
+				DEVELOPMENT_TEAM = 2X456QR9DN;
 				INFOPLIST_FILE = FourCubed/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

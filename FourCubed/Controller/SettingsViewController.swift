@@ -9,22 +9,37 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    let settingsView = SettingsView()
+    
+    
 
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.addSubview(settingsView)
+        settingsView.myTableView.dataSource = self
+        settingsView.myTableView.delegate = self
+        settingsView.myTableView.register(SetttingLocationTableViewCell.self, forCellReuseIdentifier: "EnableLocation")
     }
     
 
-    /*
-    // MARK: - Navigation
+   
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+
+extension SettingsViewController : UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
-    */
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = settingsView.myTableView.dequeueReusableCell(withIdentifier: "EnableLocation", for: indexPath) as? SetttingLocationTableViewCell else {return UITableViewCell()}
+        cell.enableLocationLabel.text = "Location Services"
+        return cell
+
+    }
+
 
 }
