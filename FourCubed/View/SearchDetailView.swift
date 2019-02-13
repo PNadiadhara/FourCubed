@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MapKit
+
 
 class SearchDetailView: UIView {
 
@@ -18,20 +18,26 @@ class SearchDetailView: UIView {
         return iv
     }()
     
+    lazy var detailName: UILabel = {
+        let label = UILabel()
+        label.text = "hey"
+        label.textAlignment = .center
+        label.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+        
+        return label
+    }()
+    
+    
     lazy var detailInfo: UITextView = {
         let textView = UITextView()
-        textView.text = ""
+        textView.text = "Whats up"
         textView.textColor = .yellow
         textView.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
         
         return textView
     }()
     
-    lazy var detailMap: MKMapView = {
-        let map = MKMapView()
-        
-        return map
-    }()
+    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -52,8 +58,8 @@ class SearchDetailView: UIView {
 extension SearchDetailView {
     private func setupDetail() {
         setDetailImageConstraints()
+        setDetailNameConstraints()
         setDetailInfoConstraints()
-        setMapConstraints()
     }
     
     
@@ -67,24 +73,26 @@ extension SearchDetailView {
         detailImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         detailImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -0).isActive = true
     }
+    func setDetailNameConstraints() {
+        addSubview(detailName)
+        detailName.translatesAutoresizingMaskIntoConstraints = false
+        detailName.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        detailName.topAnchor.constraint(equalTo: detailImage.bottomAnchor, constant: 15).isActive = true
+        detailName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
+        detailName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        //detailName.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        detailName.font = UIFont.boldSystemFont(ofSize: 20.0)
+    }
+
     func setDetailInfoConstraints() {
         addSubview(detailInfo)
         detailInfo.translatesAutoresizingMaskIntoConstraints = false
-        detailInfo.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        detailInfo.topAnchor.constraint(equalTo: detailImage.bottomAnchor, constant: 5).isActive = true
-        detailInfo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
-        detailInfo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
-        detailInfo.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        detailInfo.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        detailInfo.topAnchor.constraint(equalTo: detailName.bottomAnchor, constant: 10).isActive = true
+        detailInfo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
+        detailInfo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        detailInfo.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -10).isActive = true
         detailInfo.font = UIFont.systemFont(ofSize: 20)
-    }
-
-    func setMapConstraints() {
-        addSubview(detailMap)
-        detailMap.translatesAutoresizingMaskIntoConstraints = false
-        detailMap.topAnchor.constraint(equalTo: detailInfo.bottomAnchor, constant: 5).isActive = true
-        //detailMap.heightAnchor.constraint(lessThanOrEqualTo: heightAnchor, multiplier: 0.3).isActive = true
-        detailMap.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        detailMap.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -0).isActive = true
-       detailMap.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -0).isActive = true
+        
     }
 }
