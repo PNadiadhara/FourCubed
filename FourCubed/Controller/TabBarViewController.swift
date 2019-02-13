@@ -11,8 +11,10 @@ import UIKit
 class TabBarViewController: UITabBarController {
 
     var mainViewController = UINavigationController.init(rootViewController: ViewController())
-    var secondViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
-    var thirdViewController = UINavigationController.init(rootViewController: SettingsViewController())
+ var secondViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
+    //var secondViewController = UINavigationController.init(rootViewController: FavoriteViewController())
+   var thirdViewController = UINavigationController.init(rootViewController: SettingsViewController())
+   // var thirdViewController = UINavigationController.init(rootViewController: SearchDetailViewController())
 
     
     override func viewDidLoad() {
