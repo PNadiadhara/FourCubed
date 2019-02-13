@@ -11,7 +11,11 @@ import UIKit
 class SettingsViewController: UIViewController {
     
     let settingsView = SettingsView()
+    
+    
 
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(settingsView)
@@ -29,13 +33,13 @@ extension SettingsViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = settingsView.myTableView.dequeueReusableCell(withIdentifier: "EnableLocation", for: indexPath) as? SetttingLocationTableViewCell else {return UITableViewCell()}
         cell.enableLocationLabel.text = "Location Services"
         return cell
-        
+
     }
-    
-    
+
+
 }
