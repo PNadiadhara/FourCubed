@@ -11,19 +11,16 @@ import UIKit
 class TabBarViewController: UITabBarController {
 
     var mainViewController = UINavigationController.init(rootViewController: ViewController())
- var secondViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
-    //var secondViewController = UINavigationController.init(rootViewController: FavoriteViewController())
+    var secondViewController = UINavigationController.init(rootViewController: ListViewController())
+    var lastViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
    var thirdViewController = UINavigationController.init(rootViewController: SettingsViewController())
-   // var thirdViewController = UINavigationController.init(rootViewController: SearchDetailViewController())
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewControllers([mainViewController, secondViewController, thirdViewController], animated: true)
+        setViewControllers([mainViewController, secondViewController ,lastViewController], animated: true)
         mainViewController.tabBarItem = UITabBarItem(title: "Main Page", image: UIImage(named: "icons8-home"), tag: 0)
-        secondViewController.tabBarItem = UITabBarItem(title: "Collection", image: UIImage(named: "icons8-collectibles"), tag: 1)
-        thirdViewController.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "settings-icon"), tag: 2)
-
+        secondViewController.tabBarItem = UITabBarItem(title: "List", image: UIImage(named: "icons8-transaction_list_filled"), tag: 0)
+        lastViewController.tabBarItem = UITabBarItem(title: "Collection", image: UIImage(named: "icons8-collectibles"), tag: 0)
     }
 }
 

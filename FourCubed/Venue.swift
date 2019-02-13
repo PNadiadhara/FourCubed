@@ -11,7 +11,6 @@ import Foundation
 struct VenueData : Codable {
     let response: Venues
 }
-
 struct Venues : Codable {
     let venues: [venue]
 }
@@ -37,16 +36,12 @@ struct LocationData : Codable {
     let formattedAddress : [String]
     let venuePage : [VenueId]?
 }
-
-
 struct CatagoryData : Codable {
     let name : String
 }
-
 struct VenueId : Codable {
     let id : String
 }
-
 struct DeliveryInfo : Codable {
     let url : String // this links to a food menue
     let provider :  ProviderInfo
@@ -55,9 +50,7 @@ struct DeliveryInfo : Codable {
 struct ProviderInfo : Codable {
     let name: String
     let icon : IconInfo
-    
 }
-
 struct IconInfo : Codable {
     let prefix : String
     let sizes : [Int]
