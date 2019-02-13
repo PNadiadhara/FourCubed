@@ -57,8 +57,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //        }
     }
     @objc func apdateAlert() {
-        print("Tapped")
-    }
+//        UIView.transition(with: venueView.mapViewKit, duration: 1.0, options: .transitionFlipFromRight, animations: {
+//            venueView.mapViewKit =  [IndexPath.row]
+//        }, completion: <#T##((Bool) -> Void)?##((Bool) -> Void)?##(Bool) -> Void#>)
+//        print("Tapped")
+//    }
+    /*
+     if cell.myLabel.text == titleInfo {
+     UIView.transition(with: cell, duration: 1.0, options: .transitionFlipFromLeft, animations: {
+     cell.myLabel.text = self.facts[indexPath.row]
+     })
+     } else {
+     UIView.transition(with: cell, duration: 1.0, options: .transitionFlipFromRight, animations: {
+     cell.myLabel.text = self.titleInfo
+     })
+     }
+ */
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         let currentLocation = venueView.mapViewKit.userLocation
         let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
