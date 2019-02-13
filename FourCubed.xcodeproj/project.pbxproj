@@ -28,6 +28,8 @@
 		BFECFEF1220E2E84001A4ABE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEF0220E2E84001A4ABE /* String+Extensions.swift */; };
 		BFECFEF3220E2EC9001A4ABE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */; };
 		BFFA9EE72213762E0072A95D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA9EE62213762E0072A95D /* SettingsView.swift */; };
+		BFFA9EEA2213851C0072A95D /* SetttingLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA9EE92213851C0072A95D /* SetttingLocationTableViewCell.swift */; };
+		BFFA9EEE22147B2B0072A95D /* SearchDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA9EED22147B2B0072A95D /* SearchDetailTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		BFECFEF0220E2E84001A4ABE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		BFFA9EE62213762E0072A95D /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		BFFA9EE92213851C0072A95D /* SetttingLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetttingLocationTableViewCell.swift; sourceTree = "<group>"; };
+		BFFA9EED22147B2B0072A95D /* SearchDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				67DA9A5922121B3E0041DEFD /* VenueCell.swift */,
+				BFFA9EE92213851C0072A95D /* SetttingLocationTableViewCell.swift */,
+				BFFA9EED22147B2B0072A95D /* SearchDetailTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -226,8 +232,10 @@
 				670B84F9220F656D00C8C0E5 /* SecretKey.swift in Sources */,
 				BFECFEF3220E2EC9001A4ABE /* Date+Extensions.swift in Sources */,
 				67DA9A58221216320041DEFD /* ListView.swift in Sources */,
+				BFFA9EEA2213851C0072A95D /* SetttingLocationTableViewCell.swift in Sources */,
 				BFECFEEF220E22DA001A4ABE /* VenueAPIClient.swift in Sources */,
 				BFECFECD220DF3B3001A4ABE /* ViewController.swift in Sources */,
+				BFFA9EEE22147B2B0072A95D /* SearchDetailTableViewCell.swift in Sources */,
 				BFECFEF1220E2E84001A4ABE /* String+Extensions.swift in Sources */,
 				90D1727B22122EE00032114C /* SettingsViewController.swift in Sources */,
 				67DA9A2C220F958A0041DEFD /* FavoriteCollectionViewController.swift in Sources */,
