@@ -39,7 +39,9 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             locationManager.startUpdatingLocation()
             venueView.mapViewKit.showsUserLocation = false
         }
-
+        let rightBarButton = UIBarButtonItem(title: "Map", style: UIBarButtonItem.Style.plain, target: self, action: #selector(apdateAlert))
+        print(rightBarButton)
+        self.navigationItem.rightBarButtonItem = rightBarButton
         
 //        VenueAPIClient.searchVenue() { (appError, data) in
 //            print("calling API")
@@ -54,17 +56,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //            }
 //        }
     }
-//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        let currentLocation = venueView.mapViewKit.userLocation
-//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-//        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
-//    }
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let currentLocation = locations.last else { return }
-//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
-//        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
-//    }
-        
+    @objc func apdateAlert() {
+        print("Tapped")
+    }
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        let currentLocation = venueView.mapViewKit.userLocation
+        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let currentLocation = locations.last else { return }
+        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
