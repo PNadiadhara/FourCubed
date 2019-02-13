@@ -16,6 +16,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     let locationManager = CLLocationManager()
     let center = UNUserNotificationCenter.current()
+    var mapView = MKMapView()
     
     var venueView = VenueView()
     var settingCell = VenueCell()
@@ -29,17 +30,17 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         venueView.myCollectionView.dataSource = self
         locationManager.delegate = self
         
-        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-            venueView.mapViewKit.showsUserLocation = true
-
-        } else {
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            locationManager.startUpdatingLocation()
-            venueView.mapViewKit.showsUserLocation = false
-    }
+//        if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.startUpdatingLocation()
+//            venueView.mapViewKit.showsUserLocation = true
+//
+//        } else {
+//            locationManager.requestWhenInUseAuthorization()
+//            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locationManager.startUpdatingLocation()
+//            venueView.mapViewKit.showsUserLocation = false
+//        }
 
         
 //        VenueAPIClient.searchVenue() { (appError, data) in
@@ -54,17 +55,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 //                }
 //            }
 //        }
+        
+       
     }
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        let currentLocation = venueView.mapViewKit.userLocation
-        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
-        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
-    }
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentLocation = locations.last else { return }
-        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
-        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
-    }
+//    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//        let currentLocation = venueView.mapViewKit.userLocation
+//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
+//        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+//    }
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        guard let currentLocation = locations.last else { return }
+//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
+//        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+//    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }

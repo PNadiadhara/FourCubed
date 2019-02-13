@@ -10,11 +10,11 @@ import UIKit
 import MapKit
 
 class VenueView: UIView {
-    
+
     lazy var myCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize.init(width: 220, height: 240)
-        layout.sectionInset = UIEdgeInsets.init(top: 10, left: 10, bottom: 20, right: 10)
+        layout.sectionInset = UIEdgeInsets.init(top: 20, left: 10, bottom: 20, right: 10)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView.init(frame: self.bounds, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor(hue: 0.2, saturation: 0.02, brightness: 0.9, alpha: 1.0)
@@ -85,7 +85,7 @@ class VenueView: UIView {
         mapViewKit.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2).isActive = true
         mapViewKit.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         mapViewKit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -0).isActive = true
-        mapViewKit.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.38).isActive = true
+        mapViewKit.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.39).isActive = true
         
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
         searchBarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 350).isActive = true

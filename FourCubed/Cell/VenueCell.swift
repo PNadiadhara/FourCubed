@@ -9,9 +9,11 @@
 import UIKit
 
 class VenueCell: UICollectionViewCell {
+    var venueView = VenueView()
     
     lazy var imageView: UIImageView = {
         let image = UIImageView()
+        image.backgroundColor = .black
         return image
     }()
     override init(frame: CGRect) {
@@ -29,8 +31,8 @@ class VenueCell: UICollectionViewCell {
     private func setConstraints() {
         addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        imageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        imageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        imageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         imageView.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
     }
 }
