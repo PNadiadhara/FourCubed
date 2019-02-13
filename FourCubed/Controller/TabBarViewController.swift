@@ -13,7 +13,8 @@ class TabBarViewController: UITabBarController {
     var mainViewController = UINavigationController.init(rootViewController: ViewController())
     var secondViewController = UINavigationController.init(rootViewController: ListViewController())
     var lastViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
-    
+   var thirdViewController = UINavigationController.init(rootViewController: SettingsViewController())
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setViewControllers([mainViewController, secondViewController ,lastViewController], animated: true)
@@ -22,3 +23,4 @@ class TabBarViewController: UITabBarController {
         lastViewController.tabBarItem = UITabBarItem(title: "Collection", image: UIImage(named: "icons8-collectibles"), tag: 0)
     }
 }
+
