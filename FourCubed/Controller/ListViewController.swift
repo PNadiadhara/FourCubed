@@ -16,6 +16,7 @@ class ListViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(listView)
         view.backgroundColor = .white
+        title = "Search for Venues"
         listView.tableViewList.dataSource = self
         listView.tableViewList.delegate = self
         listView.tableViewList.register(SearchDetailTableViewCell.self, forCellReuseIdentifier: "SearchDetail")
