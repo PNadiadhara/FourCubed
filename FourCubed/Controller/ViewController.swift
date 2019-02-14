@@ -21,6 +21,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     var delegate1: VenuesViewButtonDelegate?
     
     var venueView = VenueView()
+    var tableVenueView = ListViewController()
     var settingCell = VenueCell()
     var listView = UIView()
     
@@ -71,6 +72,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         print("Button was \(sender)")
         if venueView.mapViewKit == venueView.mapViewKit {
             self.navigationController?.pushViewController(self.list, animated: true)
+            // reference for transition
+            //https://developer.apple.com/documentation/uikit/uiview/1622562-transition
         }
      }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -90,9 +93,14 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "venuesCell", for: indexPath) as? VenueCell else {
             return UICollectionViewCell()}
-        cell.layer.cornerRadius = 40
+        cell.layer.cornerRadius = 30
         cell.layer.masksToBounds = true
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
 }
 
