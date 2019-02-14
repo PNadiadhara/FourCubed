@@ -56,18 +56,18 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         self.navigationItem.rightBarButtonItem = rightBarButton
         rightBarButton.tintColor = .black
         
-        VenueAPIClient.searchVenue(keyword: "venues") { (appError, data) in
-            print("calling API")
-            if let appError = appError {
-                print("error is \(appError)")
-            }
-            if let data = data {
-                print("Data is \(data)")
-                DispatchQueue.main.async {
-                        print("whatever")
-                }
-            }
-        }
+//        VenueAPIClient.searchVenue(location: words, keyword: "venues", date: words) { (appError, data) in
+//            print("calling API")
+//            if let appError = appError {
+//                print("error is \(appError)")
+//            }
+//            if let data = data {
+//                print("Data is \(data)")
+//                DispatchQueue.main.async {
+//                        print("whatever")
+//                }
+//            }
+//        }
     }
     let list = ListViewController()
     @objc func changeView(_ sender: UIBarButtonItem) {
