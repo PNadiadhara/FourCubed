@@ -8,7 +8,27 @@
 
 import Foundation
 
-struct Photo : Codable {
+struct PhotoData: Codable {
     
+    let response: PhotoStatus
+    
+}
+
+struct PhotoStatus: Codable {
+    let photos : PhotoInfo
+}
+
+struct PhotoInfo: Codable {
+    let count: Int
+    let items: [ItemDetail]
+}
+
+struct ItemDetail: Codable {
+    let id: String
+    let createdAt: Int
+    let prefix: String
+    let suffix: String
+    let width: Int
+    let height: Int
     
 }
