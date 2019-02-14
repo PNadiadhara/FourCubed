@@ -33,10 +33,6 @@ class VenueView: UIView {
         collectionView.backgroundColor = UIColor(hue: 0.2, saturation: 0.02, brightness: 0.9, alpha: 1.0)
         return collectionView
     }()
-    lazy var mapViewKit: MKMapView = {
-        let mapView = MKMapView()
-        return mapView
-    }()
     lazy var searchBarView: UISearchBar = {
         let searchBar = UISearchBar()
         return searchBar
@@ -95,7 +91,6 @@ class VenueView: UIView {
         self.myCollectionView.register(VenueCell.self, forCellWithReuseIdentifier: "venuesCell")
     }
     private func setUpVenueCnstraints() {
-        addSubview(mapViewKit)
         addSubview(viewDetail)
         addSubview(searchBarView)
         addSubview(buttonOne)
@@ -110,14 +105,10 @@ class VenueView: UIView {
         myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
         myCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
         
-        mapViewKit.translatesAutoresizingMaskIntoConstraints = false
-        mapViewKit.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 2).isActive = true
-        mapViewKit.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        mapViewKit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -0).isActive = true
-        mapViewKit.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.39).isActive = true
+      
         
         searchBarView.translatesAutoresizingMaskIntoConstraints = false
-        searchBarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 350).isActive = true
+        searchBarView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         searchBarView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         searchBarView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -0).isActive = true
         
