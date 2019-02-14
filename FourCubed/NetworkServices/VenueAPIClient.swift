@@ -9,7 +9,7 @@
 import Foundation
 
 final class VenueAPIClient {
-    static func searchVenue(completionHandler: @escaping (AppError?, VenueData?) -> Void) {
+    static func searchVenue(keyword: String, completionHandler: @escaping (AppError?, VenueData?) -> Void) {
         NetworkHelper.shared.performDataTask(endpointURLString: "https://api.foursquare.com/v2/venues/search?ll=40.7484,-73.9857&client_id=\(SecretKeys.ClientID)&client_secret=\(SecretKeys.APIKey)&v=20190201",  httpMethod: "GET", httpBody: nil) { (error, data, response) in
             if let apiCallError = error {
                 print(apiCallError)
