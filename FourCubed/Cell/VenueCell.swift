@@ -17,6 +17,8 @@ class VenueCell: UICollectionViewCell {
         image.backgroundColor = .black
         return image
     }()
+    
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         backgroundColor = UIColor(hue: 0.2, saturation: 0.02, brightness: 0.7, alpha: 1.0)
