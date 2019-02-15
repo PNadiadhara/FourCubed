@@ -117,13 +117,12 @@ class VenueView: UIView {
         viewDetail.topAnchor.constraint(equalTo:searchBarView.bottomAnchor).isActive = true
         viewDetail.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         viewDetail.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -0).isActive = true
-        viewDetail.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -260).isActive = true
+        viewDetail.bottomAnchor.constraint(equalTo: bottomAnchor,constant: -230).isActive = true
         
         buttonOne.translatesAutoresizingMaskIntoConstraints = false
         buttonOne.topAnchor.constraint(equalTo: searchBarView.bottomAnchor).isActive = true
         buttonOne.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
         buttonOne.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -350).isActive = true
-//        buttonOne.bottomAnchor.constraint(equalTo: myCollectionView.topAnchor).isActive = true
         buttonOne.bottomAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: 30).isActive = true
 
         
@@ -131,21 +130,18 @@ class VenueView: UIView {
         buttonTwo.topAnchor.constraint(equalTo: searchBarView.bottomAnchor).isActive = true
         buttonTwo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 33).isActive = true
         buttonTwo.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -160).isActive = true
-//        buttonTwo.bottomAnchor.constraint(equalTo: myCollectionView.topAnchor).isActive = true
         buttonTwo.bottomAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: 30).isActive = true
         
         buttonTwoThree.translatesAutoresizingMaskIntoConstraints = false
         buttonTwoThree.topAnchor.constraint(equalTo: searchBarView.bottomAnchor).isActive = true
         buttonTwoThree.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 180).isActive = true
         buttonTwoThree.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -80).isActive = true
-//        buttonTwoThree.bottomAnchor.constraint(equalTo: myCollectionView.topAnchor).isActive = true
         buttonTwoThree.bottomAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: 30).isActive = true
         
         buttonTwoFour.translatesAutoresizingMaskIntoConstraints = false
         buttonTwoFour.topAnchor.constraint(equalTo: searchBarView.bottomAnchor).isActive = true
         buttonTwoFour.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 320).isActive = true
         buttonTwoFour.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
-//        buttonTwoFour.bottomAnchor.constraint(equalTo: myCollectionView.topAnchor).isActive = true
         buttonTwoFour.bottomAnchor.constraint(equalTo: searchBarView.bottomAnchor, constant: 30).isActive = true
 
     }
