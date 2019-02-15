@@ -10,6 +10,7 @@ import UIKit
 
 class VenueCell: UICollectionViewCell {
     var venueView = VenueView()
+    var mapTableViewAndCollectionView = MapTableAndCollectionView()
     
     lazy var imageView: UIImageView = {
         let image = UIImageView(image: UIImage(named: "placeholder"))
@@ -19,6 +20,7 @@ class VenueCell: UICollectionViewCell {
         return image
     }()
     
+
     lazy var nameOfLabel: UILabel = {
         let label = UILabel()
         label.text = "hey"
