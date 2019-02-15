@@ -8,9 +8,11 @@
 
 import UIKit
 
-class SearchDetailViewController: UIViewController {
+class ListVenueDetailViewController: UIViewController {
 
-    let searchDetailView = SearchDetailView()
+    let searchDetailView = ListVenueDetailView()
+    var listDetailData: Venue!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

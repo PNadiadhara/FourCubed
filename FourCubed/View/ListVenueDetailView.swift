@@ -9,7 +9,7 @@
 import UIKit
 
 
-class SearchDetailView: UIView {
+class ListVenueDetailView: UIView {
 
     lazy var detailImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "placeholder"))
@@ -55,7 +55,7 @@ class SearchDetailView: UIView {
     }
 
 }
-extension SearchDetailView {
+extension ListVenueDetailView {
     private func setupDetail() {
         setDetailImageConstraints()
         setDetailNameConstraints()
