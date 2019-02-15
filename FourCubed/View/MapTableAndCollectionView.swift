@@ -9,7 +9,7 @@
 import UIKit
 
 
-class MapTableAndCollectionView: UIView, UICollectionViewDataSource {
+class MapTableAndCollectionView: UIView {
    
     var venue = VenueView()
     var mapView = MapKitView()
@@ -19,8 +19,8 @@ class MapTableAndCollectionView: UIView, UICollectionViewDataSource {
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
-        self.venue.myCollectionView.register(VenueCell.self, forCellWithReuseIdentifier: "venuesCell")
-        venue.myCollectionView.dataSource = self
+       // self.venue.myCollectionView.register(VenueCell.self, forCellWithReuseIdentifier: "VenueCell")
+        //venue.myCollectionView.dataSource = self
         setConstraints()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -33,7 +33,7 @@ class MapTableAndCollectionView: UIView, UICollectionViewDataSource {
         
         venue.translatesAutoresizingMaskIntoConstraints = false
         mapView.translatesAutoresizingMaskIntoConstraints = false
-        venue.myCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        //venue.myCollectionView.translatesAutoresizingMaskIntoConstraints = false
         
         mapView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         mapView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
@@ -45,21 +45,11 @@ class MapTableAndCollectionView: UIView, UICollectionViewDataSource {
         venue.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
         venue.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
         
-        venue.myCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        venue.myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 450).isActive = true
-        venue.myCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
-        venue.myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
-        venue.myCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
-    }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+//        venue.myCollectionView.translatesAutoresizingMaskIntoConstraints = false
+//        venue.myCollectionView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 450).isActive = true
+//        venue.myCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+//        venue.myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+//        venue.myCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "venuesCell", for: indexPath) as? VenueCell else {
-            return UICollectionViewCell()}
-        cell.layer.cornerRadius = 40
-        cell.layer.masksToBounds = true
-        return cell
-    }
 }

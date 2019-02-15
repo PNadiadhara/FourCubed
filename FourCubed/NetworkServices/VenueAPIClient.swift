@@ -12,10 +12,6 @@ final class VenueAPIClient {
 
     static func searchVenue(location: String, keyword: String?, date: String,completionHandler: @escaping (AppError?, [Venue]?) -> Void) {
 
-
-    static func searchVenue(location: String, keyword: String?, date: String,completionHandler: @escaping (AppError?, VenueData?) -> Void) {
-
-        
         var endpointURLString = ""
         if let keyword = keyword {
             endpointURLString = "https://api.foursquare.com/v2/venues/search?ll=\(location)&client_id=\(SecretKeys.ClientID)&client_secret=\(SecretKeys.APIKey)&v=\(date)&query=\(keyword)"
@@ -32,7 +28,6 @@ final class VenueAPIClient {
                 do {
                     let data = try JSONDecoder().decode(VenueData.self, from: data)
                     completionHandler(nil, data.response.venues)
-//                    print("Data is \(data)")
                 } catch {
                     print("Decoding error is  \(AppError.decodingError(error)), nil)")
                     print("Error is \(error)")
@@ -41,3 +36,4 @@ final class VenueAPIClient {
         }
     }
 }
+

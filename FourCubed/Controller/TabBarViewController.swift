@@ -10,7 +10,7 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
 
-    var mainViewController = UINavigationController.init(rootViewController: ViewController())
+    var mainViewController = UINavigationController.init(rootViewController: MainViewController())
 //    var secondViewController = UINavigationController.init(rootViewController: ListViewController())
 //
     var secondViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
