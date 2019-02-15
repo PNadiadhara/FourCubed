@@ -10,6 +10,7 @@ import UIKit
 
 class VenueCell: UICollectionViewCell {
     var venueView = VenueView()
+    var mapTableViewAndCollectionView = MapTableAndCollectionView()
     
     lazy var imageView: UIImageView = {
         let image = UIImageView()
