@@ -19,7 +19,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
 
     var mapTableAndCollectionView = MapTableAndCollectionView()
-//    var venueView = VenueView()
+
+    var venueView = VenueView()
 
     var settingCell = VenueCell()
     var listView = ListView()
@@ -32,22 +33,22 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         title = "Home Page"
         self.view.backgroundColor = .white
         view.addSubview(mapTableAndCollectionView)
-    
-//        venueView.myCollectionView.delegate = self
-//        venueView.myCollectionView.dataSource = self
-//        locationManager.delegate = self
-//        venueView.myCollectionView.reloadData()
+        self.venueView.myCollectionView.dataSource = self
+        venueView.myCollectionView.delegate = self
+        venueView.myCollectionView.dataSource = self
+        locationManager.delegate = self
+        venueView.myCollectionView.reloadData()
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
-//            venueView.mapViewKit.showsUserLocation = true
+            mapTableAndCollectionView.mapView.mapViewKit.showsUserLocation = true
 
         } else {
             locationManager.requestWhenInUseAuthorization()
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
-//            venueView.mapViewKit.showsUserLocation = false
+            mapTableAndCollectionView.mapView.mapViewKit.showsUserLocation = false
         }
        
         let rightBarButton = UIBarButtonItem(title: "Venues", style: UIBarButtonItem.Style.plain, target: self, action: #selector(changeView))
@@ -71,24 +72,25 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     let list = ListViewController()
     @objc func changeView(_ sender: UIBarButtonItem) {
         print("Button was \(sender)")
-//        if venueView.mapViewKit == venueView.mapViewKit {
+        if mapTableAndCollectionView.mapView == mapTableAndCollectionView.mapView {
             self.navigationController?.pushViewController(self.list, animated: true)
+
 
             // reference for transition
             //https://developer.apple.com/documentation/uikit/uiview/1622562-transition
         }
 
+
      }
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//        let currentLocation = venueView.mapViewKit.userLocation
-//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-//        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+        let currentLocation = mapTableAndCollectionView.mapView.mapViewKit.userLocation
+        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        mapTableAndCollectionView.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
         let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-//        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
-       
+        mapTableAndCollectionView.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
