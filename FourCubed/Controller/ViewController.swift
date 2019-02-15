@@ -13,6 +13,14 @@ import UserNotifications
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
    
+    var venues = [Venue]() {
+        didSet{
+        DispatchQueue.main.async {
+            self.venueView.myCollectionView.reloadData()
+        }
+        }
+    }
+    
     var locationManager = CLLocationManager()
     let center = UNUserNotificationCenter.current()
     var delegate1: VenuesViewButtonDelegate?
@@ -30,7 +38,7 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Home Page"
+        title = "Search"
         self.view.backgroundColor = .white
         view.addSubview(mapTableAndCollectionView)
         self.venueView.myCollectionView.dataSource = self
@@ -50,6 +58,38 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             locationManager.startUpdatingLocation()
             mapTableAndCollectionView.mapView.mapViewKit.showsUserLocation = false
         }
+
+        getVenue(keyword: "tacos")
+        
+
+
+    }
+    func getVenue(keyword: String) {
+        guard let currentLocation = locationManager.location?.coordinate else {print("no location found")
+            return
+        }
+        let myCurrentLocation = "\(currentLocation.latitude),\(currentLocation.longitude)"
+        let date = Date.getISOTimestamp()
+        VenueAPIClient.searchVenue(location: myCurrentLocation, keyword: keyword, date: date.formatISODateString(dateFormat: "yyyyMMDD")) { (appError, data) in
+            DispatchQueue.main.async {
+                
+            
+            if let appError = appError {
+                print(appError.errorMessage())
+            } else if let data = data {
+                
+                self.venues = data
+//                dump(self.venues)
+
+                
+            }
+            }
+            
+        }
+    }
+
+        
+
        
         let rightBarButton = UIBarButtonItem(title: "Venues", style: UIBarButtonItem.Style.plain, target: self, action: #selector(changeView))
         print(rightBarButton)
@@ -93,13 +133,20 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         mapTableAndCollectionView.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
     }
     
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return venues.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "venuesCell", for: indexPath) as? VenueCell else {
             return UICollectionViewCell()}
+
+        let cellToSet = venues[indexPath.row]
+        cell.layer.cornerRadius = 40
+        cell.nameOfLabel.text = cellToSet.name
+
         cell.layer.cornerRadius = 30
+
         cell.layer.masksToBounds = true
         return cell
     }
