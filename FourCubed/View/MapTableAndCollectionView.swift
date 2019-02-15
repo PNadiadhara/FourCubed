@@ -9,8 +9,8 @@
 import UIKit
 
 
-class MapTableAndCollectionView: UIView {
-  
+class MapTableAndCollectionView: UIView, UICollectionViewDataSource {
+   
     var venue = VenueView()
     var mapView = MapKitView()
     
@@ -20,6 +20,7 @@ class MapTableAndCollectionView: UIView {
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         self.venue.myCollectionView.register(VenueCell.self, forCellWithReuseIdentifier: "venuesCell")
+        venue.myCollectionView.dataSource = self
         setConstraints()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -28,6 +29,7 @@ class MapTableAndCollectionView: UIView {
     private func setConstraints() {
         addSubview(mapView)
         addSubview(venue)
+       
         
         venue.translatesAutoresizingMaskIntoConstraints = false
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,5 +50,16 @@ class MapTableAndCollectionView: UIView {
         venue.myCollectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
         venue.myCollectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
         venue.myCollectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor).isActive = true
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "venuesCell", for: indexPath) as? VenueCell else {
+            return UICollectionViewCell()}
+        cell.layer.cornerRadius = 40
+        cell.layer.masksToBounds = true
+        return cell
     }
 }
