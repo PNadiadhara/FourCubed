@@ -13,7 +13,7 @@ class TabBarViewController: UITabBarController {
     var mainViewController = UINavigationController.init(rootViewController: ViewController())
 //    var secondViewController = UINavigationController.init(rootViewController: ListViewController())
 //
-    var secondViewController = UINavigationController.init(rootViewController: SearchDetailViewController())
+    var secondViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
 
    var thirdViewController = UINavigationController.init(rootViewController: SettingsViewController())
 
