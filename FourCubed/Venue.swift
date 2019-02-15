@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct VenueData : Codable {
+struct VenueData: Codable {
     let response: Venues
 }
-struct Venues : Codable {
-    let venues: [venue]
+struct Venues: Codable {
+    let venues: [Venue]?
 }
 
-struct venue : Codable {
+struct Venue: Codable {
     let id: String
     let name: String
     let location : LocationData?
-//    let categories : [CatagoryData]
+    let categories : [CatagoryData]
 //    let delivery : DeliveryInfo?
 }
 

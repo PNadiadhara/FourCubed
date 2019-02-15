@@ -9,7 +9,7 @@
 import Foundation
 
 final class VenueAPIClient {
-    static func searchVenue(location: String, keyword: String?, date: String,completionHandler: @escaping (AppError?, VenueData?) -> Void) {
+    static func searchVenue(location: String, keyword: String?, date: String,completionHandler: @escaping (AppError?, [Venue]?) -> Void) {
         
         var endpointURLString = ""
         if let keyword = keyword {
@@ -25,7 +25,8 @@ final class VenueAPIClient {
             if let data = data {
                 do {
                     let data = try JSONDecoder().decode(VenueData.self, from: data)
-                    print("Data is \(data)")
+                    completionHandler(nil, data.response.venues)
+//                    print("Data is \(data)")
                 } catch {
                     print("Decoding error is  \(AppError.decodingError(error)), nil)")
                     print("Error is \(error)")
