@@ -11,8 +11,12 @@ import UIKit
 // 
 class ListVenueViewController: UIViewController {
 
+    var venueDetailCell = ListVenueDetailTableViewCell()
     var listView = ListVenueView()
-    var listData = [Venue]()
+    var listData = [Venue]() 
+
+   var photoData = [PhotoStatus]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,28 +26,27 @@ class ListVenueViewController: UIViewController {
         listView.tableViewList.dataSource = self
         listView.tableViewList.delegate = self
         listView.tableViewList.register(ListVenueDetailTableViewCell.self, forCellReuseIdentifier: "SearchDetail")
+        tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
+        
     }
 }
 
 extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Place holder until segue is coordinated with Jose
-        return 10
+        return 20
+      
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Place holder until segue is coordinated with Jose
         guard let cell = listView.tableViewList.dequeueReusableCell(withIdentifier: "SearchDetail", for: indexPath) as? ListVenueDetailTableViewCell else {return UITableViewCell()}
-//        let listDtailCell = listData[indexPath.row]
-       
         return cell
 
 }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         let listDtailCell = listData[indexPath.row]
-        let listDetailVC = ListVenueDetailTableViewCell()
-    //listDetailVC.listDetailData = listDtailCell
-//
-//        self.presentedViewController(listDetailVC.self,animated: true, completion: nil)
+        // Place holder until segue is coordinated with Jose
+//        let listDtailCell = listData[indexPath.row]
+//        let listDetailVC = ListVenueDetailTableViewCell()
     }
 }

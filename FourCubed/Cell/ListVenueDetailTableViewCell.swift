@@ -14,41 +14,33 @@ class ListVenueDetailTableViewCell: UITableViewCell {
         let image = UIImageView(image: UIImage(named: "placeholder"))
         return image
     }()
-    
     lazy var venueName : UILabel = {
         let label = UILabel()
         return label
     }()
-    
     lazy var venueAddress : UILabel = {
         let label = UILabel()
         return label
     }()
-    
     lazy var venueCatagories : UILabel = {
         let label = UILabel()
         return label
     }()
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints()
     }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     private func setConstraints() {
         addSubview(venueImage)
         addSubview(venueName)
@@ -56,9 +48,8 @@ class ListVenueDetailTableViewCell: UITableViewCell {
         addSubview(venueCatagories)
         
         venueImage.translatesAutoresizingMaskIntoConstraints = false
-        [venueImage.topAnchor.constraint(equalTo: topAnchor, constant: 11), venueImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11), venueImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -280),venueImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -111)].forEach{$0.isActive = true}
-        
-        
+        [venueImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5), venueImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10), venueImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -150),venueImage.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -1), venueImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9), venueImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15)].forEach{$0.isActive = true}
+
 //        [venueImage.topAnchor.constraint(equalTo: topAnchor, constant: 11), venueImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11), venueImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -280), venueImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.04), venueImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.02)].forEach{$0.isActive = true}
         
         
