@@ -11,37 +11,49 @@ import CoreLocation
 import MapKit
 import UserNotifications
 
-class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UICollectionViewDelegateFlowLayout {
+class MainViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegateFlowLayout  {
    
     var venues = [Venue]() {
         didSet{
         DispatchQueue.main.async {
-            
+            self.makeAnnotations()
             }
         }
     }
+    var userSearchQuery = String() {
+        didSet {
+            DispatchQueue.main.async {
+                self.getVenue(keyword: self.userSearchQuery)
+            }
+        }
+    }
+    var map = MapTableAndCollectionView()
     var locationManager = CLLocationManager()
     let center = UNUserNotificationCenter.current()
     //var delegate1: VenuesViewButtonDelegate?
     var venueView = VenueView()
     var listView = ListVenueView()
     var venueToShow = [CatagoryData]()
+    private var annoations = [MKAnnotation]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
+        venueView.searchBarView.delegate = self
+        venueView.mapViewKit.delegate = self
         self.view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: self, action: #selector(listPressed))
         view.addSubview(venueView)
-
-   
+        
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+            venueView.mapViewKit.showsUserLocation = true
         } else {
             locationManager.requestWhenInUseAuthorization()
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+            venueView.mapViewKit.showsUserLocation = true
         }
         getVenue(keyword: "tacos")
     }
@@ -74,14 +86,48 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
     }
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //let currentLocation = mapTableAndCollectionView.mapView.mapViewKit.userLocation
-       // let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        //MapTableAndCollectionView.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+        let currentLocation = map.mapView.mapViewKit.userLocation
+        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        map.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
         let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-       // mapTableAndCollectionView.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+        map.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
     }
 }
 
+extension MainViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        userSearchQuery = venueView.searchBarView.text ?? "tacos"
+        searchBar.resignFirstResponder()
+    }
+}
+extension MainViewController : MKMapViewDelegate {
+    private func makeAnnotations() {
+        venueView.mapViewKit.removeAnnotations(annoations)
+        annoations.removeAll()
+        for venue in venues {
+            let annotation = MKPointAnnotation()
+            //NOTE: COORDINATE IS BEING FORCE UNWWRAPPED, MAY CAUSE ISSUE LATER
+            annotation.coordinate = (venue.location?.coordinate)!
+            annotation.title = venue.name
+            annoations.append(annotation)
+        }
+        venueView.mapViewKit.showAnnotations(annoations, animated: true)
+    }
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("Annotation slected")
+        let detailVC = ListVenueDetailViewController()
+        detailVC.modalTransitionStyle = .crossDissolve
+        detailVC.modalPresentationStyle = .overCurrentContext
+        self.present(detailVC, animated: true, completion: nil)
+        guard let annotation = view.annotation else { fatalError("annotation nil") }
+        mapView.deselectAnnotation(annotation, animated: true)
+    }
+    func displayMapAtLatitude(latitude: Double, longitude: Double) {
+        var region = map.mapView.mapViewKit.region
+        region.center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        venueView.mapViewKit.setRegion(region, animated: true)
+    }
+}

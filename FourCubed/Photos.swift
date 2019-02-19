@@ -25,5 +25,5 @@ struct ItemDetail: Codable {
     let suffix: String
     let width: Int
     let height: Int
-    
 }
+
