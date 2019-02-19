@@ -81,6 +81,10 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
         
     }
     
+    @objc func centerOnUserButtonPressed() {
+        venueView.mapViewKit.userLocation
+    }
+    
     
     
     func getVenue(keyword: String) {
@@ -138,14 +142,14 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
 
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        let currentLocation = venueView.mapViewKit.userLocation
-        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+//        let currentLocation = venueView.mapViewKit.userLocation
+//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+//        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let currentLocation = locations.last else { return }
-        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+//        guard let currentLocation = locations.last else { return }
+//        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+//        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
         
        
        
@@ -161,7 +165,11 @@ extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         userSearchQuery = venueView.searchBarView.text ?? "tacos"
         searchBar.resignFirstResponder()
-        
+    
+        //self.venueView.searchBarView.endEditing(true)
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.venueView.searchBarView.endEditing(true)
     }
     
 }
