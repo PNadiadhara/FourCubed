@@ -76,8 +76,8 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
         listVC.modalTransitionStyle = .crossDissolve
         listVC.modalPresentationStyle = .overCurrentContext
        // listVC.item = item
-        self.present(listVC, animated: true, completion:  nil)
-        
+        //self.present(listVC, animated: true, completion:  nil)
+        navigationController?.pushViewController(listVC, animated: true)
         
     }
     
@@ -101,7 +101,7 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
             }   else if let data = data {
                 
                 self.venues = data
-                dump(self.venues)
+                //dump(self.venues)
                 }
             }
         }
@@ -195,10 +195,19 @@ extension MainViewController : MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("Annotation slected")
         let detailVC = ListVenueDetailViewController()
+        guard let annotation = view.annotation else { fatalError("annotation nil") }
+        
+       
         detailVC.modalTransitionStyle = .crossDissolve
         detailVC.modalPresentationStyle = .overCurrentContext
-        self.present(detailVC, animated: true, completion: nil)
-        guard let annotation = view.annotation else { fatalError("annotation nil") }
+        detailVC.detailOfAddress = detailVC.detailData.location?.address
+        detailVC.detailOfCategories = detailVC.detailData.categories[0].name
+        detailVC.detailOfCity = detailVC.detailData.location?.city
+        
+        
+//        self.present(detailVC, animated: true, completion: nil) // doing monorlly using this type to call
+        navigationController?.pushViewController(detailVC, animated: true) // doing navigation using this type so button will show up on the top right or left 
+
         
         mapView.deselectAnnotation(annotation, animated: true)
         

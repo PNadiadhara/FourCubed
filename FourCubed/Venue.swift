@@ -21,6 +21,7 @@ struct Venue: Codable {
     let name: String
     let location : LocationData?
     let categories : [CatagoryData]
+    let referralId: String
 //    let delivery : DeliveryInfo?
 }
 
@@ -33,7 +34,7 @@ struct LocationData : Codable {
     let postalCode : String?
     let city : String?
     let state : String
-    let country : String
+    let country : String?
     let formattedAddress : [String]
     let venuePage : [VenueId]?
    
