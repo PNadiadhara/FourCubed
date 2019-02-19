@@ -11,7 +11,6 @@ import Foundation
 final class VenueAPIClient {
 
     static func searchVenue(location: String, keyword: String?, date: String,completionHandler: @escaping (AppError?, [Venue]?) -> Void) {
-
         var endpointURLString = ""
         if let keyword = keyword {
             endpointURLString = "https://api.foursquare.com/v2/venues/search?ll=\(location)&client_id=\(SecretKeys.ClientID)&client_secret=\(SecretKeys.APIKey)&v=\(date)&query=\(keyword)"
@@ -19,7 +18,6 @@ final class VenueAPIClient {
             endpointURLString = "https://api.foursquare.com/v2/venues/search?ll=\(location)&client_id=\(SecretKeys.ClientID)&client_secret=\(SecretKeys.APIKey)&v=\(date)"
         }
         NetworkHelper.shared.performDataTask(endpointURLString: endpointURLString,  httpMethod: "GET", httpBody: nil) { (error, data, response) in
-
             if let apiCallError = error {
                 print(apiCallError)
                 completionHandler(AppError.badURL("URL is bad"), nil)
@@ -36,4 +34,5 @@ final class VenueAPIClient {
         }
     }
 }
+
 

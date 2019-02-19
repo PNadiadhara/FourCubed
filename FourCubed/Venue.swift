@@ -12,14 +12,14 @@ struct VenueData: Codable {
     let response: Venues
 }
 struct Venues: Codable {
-    let venues: [Venue]?
+    let venues: [Venue]
 }
 
 struct Venue: Codable {
     let id: String
     let name: String
     let location : LocationData?
-    let categories : [CatagoryData]
+    var categories : [CatagoryData]
 //    let delivery : DeliveryInfo?
 }
 
