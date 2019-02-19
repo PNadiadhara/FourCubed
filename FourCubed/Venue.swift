@@ -31,7 +31,7 @@ struct LocationData : Codable {
     let lng : Double
     let distance : Int
     let postalCode : String?
-    let city : String
+    let city : String?
     let state : String
     let country : String
     let formattedAddress : [String]

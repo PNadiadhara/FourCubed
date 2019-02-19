@@ -17,6 +17,7 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
         didSet{
         DispatchQueue.main.async {
             self.makeAnnotations()
+            
             }
         }
     }
@@ -57,11 +58,13 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+            venueView.mapViewKit.showsUserLocation = true
 
         } else {
             locationManager.requestWhenInUseAuthorization()
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
+            venueView.mapViewKit.showsUserLocation = true
         }
         
         getVenue(keyword: "tacos")
@@ -100,20 +103,53 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
         }
     }
     
+    func getPhoto(keyword: String) {
+        PhotoAPIClient.searchPhoto(venueID: keyword, date: Date.getISOTimestamp()) { (error, data) in
+            if let error = error {
+                DispatchQueue.main.async {
+                    
+                }
+            }
+        }
+    }
+    
 
 
+//    GoogleAPIClient.getBookImages(keyword: cellToSet.book_details[0].primary_isbn13) { (error, data) in
+//    if let error = error {
+//    DispatchQueue.main.async {
+//    cell.bookImage.image = UIImage(named: "bookplaceholder")
+//    }
+//    print(error.errorMessage())
+//    } else if let data = data {
+//    ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail.absoluteString, completion: { (error, image) in
+//    if let error = error {
+//    print(error.errorMessage())
+//    } else if let image = image {
+//    DispatchQueue.main.async {
+//    cell.bookImage.image = image
+//    }
+//    }
+//    })
+//    }
+//    }
+ 
     
 
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        //let currentLocation = mapTableAndCollectionView.mapView.mapViewKit.userLocation
-       // let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-        //MapTableAndCollectionView.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+        let currentLocation = venueView.mapViewKit.userLocation
+        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
+        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let currentLocation = locations.last else { return }
         let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
-       // mapTableAndCollectionView.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
+        
+       
+       
+
     }
 
     
@@ -164,5 +200,8 @@ extension MainViewController : MKMapViewDelegate {
     
     
 
+}
+
+extension MainViewController {
     
 }
