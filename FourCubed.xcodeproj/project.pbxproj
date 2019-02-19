@@ -21,6 +21,8 @@
 		9000062E221368B30060112C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9000062D221368B30060112C /* FavoriteView.swift */; };
 		90000630221368F50060112C /* ListVenueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9000062F221368F50060112C /* ListVenueDetailView.swift */; };
 		90000632221369260060112C /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90000631221369260060112C /* FavoriteCollectionViewCell.swift */; };
+		903147E3221C79CC00033670 /* VenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903147E2221C79CC00033670 /* VenueModel.swift */; };
+		903147E5221C79E300033670 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903147E4221C79E300033670 /* Favorite.swift */; };
 		90D1727B22122EE00032114C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1727A22122EE00032114C /* SettingsViewController.swift */; };
 		90FD8DBA22160852001EBE1A /* PhotoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8DB922160852001EBE1A /* PhotoAPIClient.swift */; };
 		BFECFECB220DF3B3001A4ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFECA220DF3B3001A4ABE /* AppDelegate.swift */; };
@@ -55,6 +57,8 @@
 		9000062D221368B30060112C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
 		9000062F221368F50060112C /* ListVenueDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVenueDetailView.swift; sourceTree = "<group>"; };
 		90000631221369260060112C /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		903147E2221C79CC00033670 /* VenueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueModel.swift; sourceTree = "<group>"; };
+		903147E4221C79E300033670 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
 		90D1727A22122EE00032114C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		90FD8DB922160852001EBE1A /* PhotoAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPIClient.swift; sourceTree = "<group>"; };
 		BFECFEC7220DF3B3001A4ABE /* FourCubed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourCubed.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +174,7 @@
 			children = (
 				BFECFEE0220E139B001A4ABE /* Venue.swift */,
 				BFECFEE3220E13F3001A4ABE /* Photos.swift */,
+				903147E4221C79E300033670 /* Favorite.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -186,6 +191,7 @@
 				BFECFEF0220E2E84001A4ABE /* String+Extensions.swift */,
 				BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */,
 				670B84F8220F656D00C8C0E5 /* SecretKey.swift */,
+				903147E2221C79CC00033670 /* VenueModel.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -266,6 +272,7 @@
 				BFECFEF3220E2EC9001A4ABE /* Date+Extensions.swift in Sources */,
 				9000062C221368670060112C /* DataPersistenceManager.swift in Sources */,
 				90000632221369260060112C /* FavoriteCollectionViewCell.swift in Sources */,
+				903147E5221C79E300033670 /* Favorite.swift in Sources */,
 				67DA9A58221216320041DEFD /* ListVenueView.swift in Sources */,
 				BFFA9EEA2213851C0072A95D /* SetttingLocationTableViewCell.swift in Sources */,
 				BFECFEEF220E22DA001A4ABE /* VenueAPIClient.swift in Sources */,
@@ -291,6 +298,7 @@
 				67DA9A56221215230041DEFD /* ListVenueViewController.swift in Sources */,
 				BFECFEEB220E20A8001A4ABE /* ImageHelper.swift in Sources */,
 				BFFA9EE72213762E0072A95D /* SettingsView.swift in Sources */,
+				903147E3221C79CC00033670 /* VenueModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
