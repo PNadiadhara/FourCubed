@@ -51,7 +51,7 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate {
 }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          //Place holder until segue is coordinated with
-//         let listDtailCell = listData[indexPath.row]
+         let listDtailCell = listData[indexPath.row]
 //         let list = ListVenueDetailViewController(venueTitle: listDtailCell.name)
 //        selectedVenue = listDtailCell.categories[0].name
 //        navigationController?.pushViewController(list, animated: true)
