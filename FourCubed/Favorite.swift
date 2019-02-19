@@ -11,9 +11,9 @@ import Foundation
 struct Favorite: Codable {
     
     let createdAt: String
-    let veunesData: Data
+    //let imageData: Data
     let name: String
-    let address: String
+    //let address: String
     let description: String?
     
 }

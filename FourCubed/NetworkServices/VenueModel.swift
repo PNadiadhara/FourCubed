@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class BooksModel {
+final class VenuesModel {
     private static let filename = "VenuesList.plist"
     private static var venusData = [Favorite]()
     
