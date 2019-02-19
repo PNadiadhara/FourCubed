@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct VenueData: Codable {
     let response: Venues
@@ -35,7 +36,12 @@ struct LocationData : Codable {
     let country : String
     let formattedAddress : [String]
     let venuePage : [VenueId]?
+   
+    public var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(lat, lng)
+    }
 }
+
 struct CatagoryData : Codable {
     let name : String
 }

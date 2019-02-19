@@ -11,38 +11,46 @@ import CoreLocation
 import MapKit
 import UserNotifications
 
-class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UICollectionViewDelegateFlowLayout {
+class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollectionViewDelegateFlowLayout {
    
     var venues = [Venue]() {
         didSet{
         DispatchQueue.main.async {
-            
+            self.makeAnnotations()
+            }
+        }
+    }
+    
+    var userSearchQuery = String() {
+        didSet {
+            DispatchQueue.main.async {
+                self.getVenue(keyword: self.userSearchQuery)
             }
         }
     }
     
     var locationManager = CLLocationManager()
+    
     let center = UNUserNotificationCenter.current()
     //var delegate1: VenuesViewButtonDelegate?
     
 
 
     var venueView = VenueView()
-
-   
-    var listView = ListVenueView()
-
-    var venueToShow = [CatagoryData]()
     
+    var listView = ListVenueView()
+    // venueToShow VARIABLE ONLY HAS NAME VARIABLE, venues VARIABLE HAS MORE INFORMATION, SUGGEST DELETE venueToShow VARIABLE
+    var venueToShow = [CatagoryData]()
+   
+    private var annoations = [MKAnnotation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        venueView.searchBarView.delegate = self
+        venueView.mapViewKit.delegate = self
         title = "Search"
         self.view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: self, action: #selector(listPressed))
-       
-
-
        
         view.addSubview(venueView)
    
@@ -55,19 +63,21 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
         }
-
+        
         getVenue(keyword: "tacos")
         
     }
     
     @objc func listPressed() {
         let listVC = ListVenueViewController()
-        
         listVC.modalTransitionStyle = .crossDissolve
         listVC.modalPresentationStyle = .overCurrentContext
        // listVC.item = item
         self.present(listVC, animated: true, completion:  nil)
+        
+        
     }
+    
     
     
     func getVenue(keyword: String) {
@@ -89,6 +99,10 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
             }
         }
     }
+    
+
+
+    
 
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
@@ -102,8 +116,53 @@ class MainViewController: UIViewController, MKMapViewDelegate, CLLocationManager
        // mapTableAndCollectionView.mapView.mapViewKit.setRegion(myCurrentRegion, animated: true)
     }
 
-
+    
     
     
 }
 
+extension MainViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        userSearchQuery = venueView.searchBarView.text ?? "tacos"
+        searchBar.resignFirstResponder()
+        
+    }
+    
+}
+
+extension MainViewController : MKMapViewDelegate {
+    
+    
+    
+    private func makeAnnotations() {
+        venueView.mapViewKit.removeAnnotations(annoations)
+        annoations.removeAll()
+        for venue in venues {
+            let annotation = MKPointAnnotation()
+            //NOTE: COORDINATE IS BEING FORCE UNWWRAPPED, MAY CAUSE ISSUE LATER
+            annotation.coordinate = (venue.location?.coordinate)!
+            annotation.title = venue.name
+            annoations.append(annotation)
+        }
+        venueView.mapViewKit.showAnnotations(annoations, animated: true)
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("Annotation slected")
+        let detailVC = ListVenueDetailViewController()
+        detailVC.modalTransitionStyle = .crossDissolve
+        detailVC.modalPresentationStyle = .overCurrentContext
+        self.present(detailVC, animated: true, completion: nil)
+        guard let annotation = view.annotation else { fatalError("annotation nil") }
+        
+        mapView.deselectAnnotation(annotation, animated: true)
+        
+    
+        
+    }
+    
+    
+
+    
+}
