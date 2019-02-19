@@ -10,11 +10,9 @@ import UIKit
 
 
 class ListVenueDetailView: UIView {
-
+    
     lazy var detailImage: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "placeholder"))
-        
-        
         return iv
     }()
     
@@ -27,7 +25,6 @@ class ListVenueDetailView: UIView {
         return label
     }()
     
-    
     lazy var detailInfo: UITextView = {
         let textView = UITextView()
         textView.text = "Whats up"
@@ -36,8 +33,6 @@ class ListVenueDetailView: UIView {
         
         return textView
     }()
-    
-    
     
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
@@ -53,7 +48,6 @@ class ListVenueDetailView: UIView {
         backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         setupDetail()
     }
-
 }
 extension ListVenueDetailView {
     private func setupDetail() {
@@ -61,9 +55,7 @@ extension ListVenueDetailView {
         setDetailNameConstraints()
         setDetailInfoConstraints()
     }
-    
-    
-    
+
     func setDetailImageConstraints() {
         addSubview(detailImage)
         detailImage.translatesAutoresizingMaskIntoConstraints = false

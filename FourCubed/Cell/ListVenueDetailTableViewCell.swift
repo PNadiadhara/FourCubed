@@ -16,15 +16,24 @@ class ListVenueDetailTableViewCell: UITableViewCell {
     }()
     lazy var venueName : UILabel = {
         let label = UILabel()
+        label.backgroundColor = .black
+        label.text = "hola"
+        label.textColor = .white
         return label
     }()
     lazy var venueAddress : UILabel = {
-        let label = UILabel()
-        return label
+        let address = UILabel()
+        address.backgroundColor = .black
+        address.text = "hola"
+        address.textColor = .white
+        return address
     }()
     lazy var venueCatagories : UILabel = {
-        let label = UILabel()
-        return label
+        let catagory = UILabel()
+        catagory.backgroundColor = .black
+        catagory.text = "hola"
+        catagory.textColor = .white
+        return catagory
     }()
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,25 +59,29 @@ class ListVenueDetailTableViewCell: UITableViewCell {
         venueImage.translatesAutoresizingMaskIntoConstraints = false
         [venueImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5), venueImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10), venueImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -150),venueImage.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -1), venueImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.9), venueImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.15)].forEach{$0.isActive = true}
 
-//        [venueImage.topAnchor.constraint(equalTo: topAnchor, constant: 11), venueImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11), venueImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -280), venueImage.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.04), venueImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.02)].forEach{$0.isActive = true}
-        
+   
         
         venueName.translatesAutoresizingMaskIntoConstraints = false
-        [venueName.topAnchor.constraint(equalTo: topAnchor, constant: 11),
-         venueName.leadingAnchor.constraint(equalTo: venueImage.trailingAnchor, constant: 11),
-         venueName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11)
+        [venueName.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 5),
+         venueName.leadingAnchor.constraint(equalTo: venueImage.trailingAnchor, constant: 20),
+         venueName.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
+         venueName.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -50),
+         venueName.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25)
          ].forEach{$0.isActive = true}
         
         venueCatagories.translatesAutoresizingMaskIntoConstraints = false
-        [venueCatagories.topAnchor.constraint(equalTo: venueName.bottomAnchor, constant: 11),
-         venueCatagories.leadingAnchor.constraint(equalTo: venueImage.trailingAnchor, constant: 11),
-         venueCatagories.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11)
+        [venueCatagories.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30),
+         venueCatagories.leadingAnchor.constraint(equalTo: venueImage.trailingAnchor, constant: 20),
+         venueCatagories.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
+         venueCatagories.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25)
             ].forEach{$0.isActive = true}
         
         venueAddress.translatesAutoresizingMaskIntoConstraints = false
-        [venueAddress.topAnchor.constraint(equalTo: venueCatagories.bottomAnchor, constant: 11),
-         venueAddress.leadingAnchor.constraint(equalTo: venueImage.trailingAnchor, constant: 11),
-         venueAddress.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11)
+        [venueAddress.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 55),
+         venueAddress.leadingAnchor.constraint(equalTo: venueImage.trailingAnchor, constant: 20),
+         venueAddress.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -11),
+         venueAddress.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.25)
+         
             ].forEach{$0.isActive = true}
     }
 
