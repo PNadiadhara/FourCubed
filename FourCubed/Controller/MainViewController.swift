@@ -174,7 +174,24 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
         }
     }
     
-
+    //    GoogleAPIClient.getBookImages(keyword: cellToSet.book_details[0].primary_isbn13) { (error, data) in
+    //    if let error = error {
+    //    DispatchQueue.main.async {
+    //    cell.bookImage.image = UIImage(named: "bookplaceholder")
+    //    }
+    //    print(error.errorMessage())
+    //    } else if let data = data {
+    //    ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail.absoluteString, completion: { (error, image) in
+    //    if let error = error {
+    //    print(error.errorMessage())
+    //    } else if let image = image {
+    //    DispatchQueue.main.async {
+    //    cell.bookImage.image = image
+    //    }
+    //    }
+    //    })
+    //    }
+    //    }
 
 
  
