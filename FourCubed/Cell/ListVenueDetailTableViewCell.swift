@@ -16,23 +16,17 @@ class ListVenueDetailTableViewCell: UITableViewCell {
     }()
     lazy var venueName : UILabel = {
         let label = UILabel()
-        label.backgroundColor = .black
-        label.text = "hola"
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     lazy var venueAddress : UILabel = {
         let address = UILabel()
-        address.backgroundColor = .black
-        address.text = "hola"
-        address.textColor = .white
+        address.textColor = .black
         return address
     }()
     lazy var venueCatagories : UILabel = {
         let catagory = UILabel()
-        catagory.backgroundColor = .black
-        catagory.text = "hola"
-        catagory.textColor = .white
+        catagory.textColor = .black
         return catagory
     }()
     override func awakeFromNib() {

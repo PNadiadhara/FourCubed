@@ -19,11 +19,8 @@ class FavoriteCollectionViewController: UIViewController {
         favoritesView.favoriteCollectionView.dataSource = self
         favoritesView.favoriteCollectionView.delegate = self
         favoritesView.favoriteCollectionView.register(FavoriteCollectionViewCell.self, forCellWithReuseIdentifier: "FavoriteCell")
-
         // Do any additional setup after loading the view.
     }
-    
-
 }
 
 extension FavoriteCollectionViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -40,9 +37,5 @@ extension FavoriteCollectionViewController : UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.favoritesView.favoriteCollectionView.frame.height / 6 , height: self.favoritesView.favoriteCollectionView.frame.height / 6  )
-        
     }
-    
-    
-    
 }
