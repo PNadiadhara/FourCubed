@@ -100,9 +100,10 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
         cell.venueName.text = listVenues.name
         cell.venueAddress.text = listVenues.location?.address
         cell.venueCatagories.text = listVenues.categories[0].name
+        
     
         let date = Date.getISOTimestamp()
-        let id = listVenues.referralId.replacingOccurrences(of: "v-", with: "") //?? "no id"
+        let id = listVenues.referralId.replacingOccurrences(of: "v-", with: "")
         
         PhotoAPIClient.searchPhoto(venueID: id, date: date.formatISODateString(dateFormat: "yyyyMMDD")) { (appError, image) in
             DispatchQueue.main.async {
@@ -110,9 +111,9 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
                     print(appError.errorMessage())
                 }
                 if image != nil {
-                    // let prefix = self.listPhoto.first?.items.first?.prefix ?? "no prefix"
+                    
                     if let prefix = image?.first?.prefix, let suffix = image?.first?.suffix {
-                        // let suffix = self.listPhoto.first?.items.first?.suffix ?? "no suffix"
+                        
                         let imageToSet = prefix + "300x300" + suffix
                         ImageHelper.shared.fetchImage(urlString: imageToSet) { (appError, image) in
                             if let appError = appError {
@@ -131,13 +132,17 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let listDetailCell = listData[indexPath.row]
+        
+        guard let cell = tableView.cellForRow(at: indexPath) as? ListVenueDetailTableViewCell else { return }
+        
         let detailListVC = ListVenueDetailViewController()
         detailListVC.detailData = listDetailCell
-        //  presentedViewController(ListVenueDetailViewController.self,animated: true)
+        detailListVC.venueImages = cell.venueImage.image
+
         self.navigationController?.pushViewController(detailListVC, animated: true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        print(searchText)
+
         if searchText.isEmpty {
             searchingVenues = false
             listView.tableViewList.reloadData()

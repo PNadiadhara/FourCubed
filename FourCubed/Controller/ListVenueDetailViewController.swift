@@ -7,34 +7,66 @@
 //
 
 import UIKit
+import MapKit
 
 class ListVenueDetailViewController: UIViewController {
     
     let searchDetailView = ListVenueDetailView()
     //    var listDetailData: Venue!
+    var detailPhoto: PhotoInfo!
     public var detailData: Venue!
-    //    public var image: UIImage?
+       public var venueImages: UIImage?
     public var detailOfAddress: String?
     public var detailOfCategories: String?
     public var detailOfCity: String?
+    var locationManager = CLLocationManager()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(favoriteButtonPressed))
-        
+        self.searchDetailView.mapButton.addTarget(self, action: #selector(mapButtonPressed), for: .touchUpInside)
         view.addSubview(searchDetailView)
         view.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-        dump(detailData)
+       // dump(detailData)
+        
         setupData()
+        
+    }
+    @objc func mapButtonPressed() {
+        openMapForPlace()
+    }
+
+    func openMapForPlace() {
+        guard let currentLocation = locationManager.location?.coordinate else {
+            print("no location found")
+            return
+        }
+        let latitude: CLLocationDegrees = currentLocation.latitude
+        let longitude: CLLocationDegrees = currentLocation.longitude
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = detailData.name//"Place Name"
+        mapItem.openInMaps(launchOptions: options)
+        
+        
         
     }
     
     func setupData() {
         
         searchDetailView.detailName.text = detailData.name
-        //        if let images = imageOfBooks {
-        //            detailView.detailBookImage.image = images
-        //        }
+                if let images = venueImages {
+                    searchDetailView.detailImage.image = images
+                }
         searchDetailView.categoriesLabel.text = detailData.categories[0].name
         
         if let address = detailData.location?.address {
@@ -75,4 +107,9 @@ class ListVenueDetailViewController: UIViewController {
             }
         }
     }
+}
+
+
+func mapButtonPressed() {
+    
 }
