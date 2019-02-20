@@ -54,7 +54,7 @@ class VenueView: UIView {
     
     lazy var buttonFour: UIButton = {
         let button4 = UIButton()
-        button4.setImage(UIImage(named: "icons8-dance_with_devil"), for: .normal)
+        button4.setImage(UIImage(named: "home"), for: .normal)
         button4.addTarget(self, action: #selector(danceButton), for: .touchUpInside)
         return button4
     }()
