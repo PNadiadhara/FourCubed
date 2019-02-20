@@ -11,7 +11,7 @@ import CoreLocation
 import MapKit
 import UserNotifications
 
-class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollectionViewDelegateFlowLayout {
+class MainViewController: UIViewController, CLLocationManagerDelegate, UICollectionViewDelegateFlowLayout  {
    
     var venues = [Venue]() {
         didSet{
@@ -21,7 +21,6 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
             }
         }
     }
-    
     var userSearchQuery = String() {
         didSet {
             DispatchQueue.main.async {
@@ -29,34 +28,30 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
             }
         }
     }
-    
+    var map = MapTableAndCollectionView()
     var locationManager = CLLocationManager()
-    
     let center = UNUserNotificationCenter.current()
     //var delegate1: VenuesViewButtonDelegate?
-    
-
-
     var venueView = VenueView()
-    
     var listView = ListVenueView()
-    // venueToShow VARIABLE ONLY HAS NAME VARIABLE, venues VARIABLE HAS MORE INFORMATION, SUGGEST DELETE venueToShow VARIABLE
     var venueToShow = [CatagoryData]()
-   
     private var annoations = [MKAnnotation]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         venueView.buttonFour.addTarget(self, action: #selector(centerOnUserButtonPressed), for: .touchUpInside)
+
         venueView.searchBarView.delegate = self
         venueView.mapViewKit.delegate = self
-        title = "Search"
         self.view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: self, action: #selector(listPressed))
+
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Location", style: .plain, target: self, action: #selector(locationSetting))
        
+
         view.addSubview(venueView)
-   
+        
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             locationManager.startUpdatingLocation()
@@ -68,18 +63,15 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
             locationManager.startUpdatingLocation()
             venueView.mapViewKit.showsUserLocation = true
         }
-        
         getVenue(keyword: "tacos")
-        
     }
-    
     @objc func listPressed() {
         let listVC = ListVenueViewController()
         listVC.modalTransitionStyle = .crossDissolve
         listVC.modalPresentationStyle = .overCurrentContext
        // listVC.item = item
-        //self.present(listVC, animated: true, completion:  nil)
         navigationController?.pushViewController(listVC, animated: true)
+
         
     }
     
@@ -143,6 +135,7 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
     }
     
     
+
     
     func getVenue(keyword: String) {
         guard let currentLocation = locationManager.location?.coordinate else {
@@ -163,6 +156,7 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
             }
         }
     }
+
     
     func getPhoto(keyword: String) {
         PhotoAPIClient.searchPhoto(venueID: keyword, date: Date.getISOTimestamp()) { (error, data) in
@@ -174,24 +168,7 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
         }
     }
     
-    //    GoogleAPIClient.getBookImages(keyword: cellToSet.book_details[0].primary_isbn13) { (error, data) in
-    //    if let error = error {
-    //    DispatchQueue.main.async {
-    //    cell.bookImage.image = UIImage(named: "bookplaceholder")
-    //    }
-    //    print(error.errorMessage())
-    //    } else if let data = data {
-    //    ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail.absoluteString, completion: { (error, image) in
-    //    if let error = error {
-    //    print(error.errorMessage())
-    //    } else if let image = image {
-    //    DispatchQueue.main.async {
-    //    cell.bookImage.image = image
-    //    }
-    //    }
-    //    })
-    //    }
-    //    }
+ 
 
 
  
@@ -211,17 +188,15 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
        
        
 
-    }
 
-    
-    
-    
+    }
 }
 
 extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         userSearchQuery = venueView.searchBarView.text ?? "tacos"
         searchBar.resignFirstResponder()
+
     
         
     }
@@ -229,12 +204,9 @@ extension MainViewController: UISearchBarDelegate {
         self.venueView.searchBarView.endEditing(true)
     }
     
-}
 
+}
 extension MainViewController : MKMapViewDelegate {
-    
-    
-    
     private func makeAnnotations() {
         venueView.mapViewKit.removeAnnotations(annoations)
         annoations.removeAll()
@@ -247,8 +219,6 @@ extension MainViewController : MKMapViewDelegate {
         }
         venueView.mapViewKit.showAnnotations(annoations, animated: true)
     }
-    
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("Annotation slected")
         let detailVC = ListVenueDetailViewController()
@@ -264,13 +234,9 @@ extension MainViewController : MKMapViewDelegate {
         
 //        self.present(detailVC, animated: true, completion: nil) // doing monorlly using this type to call
         navigationController?.pushViewController(detailVC, animated: true) // doing navigation using this type so button will show up on the top right or left 
-
-        
         mapView.deselectAnnotation(annotation, animated: true)
-        
-    
-        
     }
+
     
     
 
@@ -278,4 +244,5 @@ extension MainViewController : MKMapViewDelegate {
 
 extension MainViewController {
     
+
 }

@@ -9,36 +9,32 @@
 import UIKit
 
 class ListVenueDetailViewController: UIViewController {
-
+    
     let searchDetailView = ListVenueDetailView()
-//    var listDetailData: Venue!
+    //    var listDetailData: Venue!
     public var detailData: Venue!
-//    public var image: UIImage?
+    //    public var image: UIImage?
     public var detailOfAddress: String?
-       public var detailOfCategories: String?
-       public var detailOfCity: String?
-    
-    
+    public var detailOfCategories: String?
+    public var detailOfCity: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(favoriteButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Favorite", style: .plain, target: self, action: #selector(favoriteButtonPressed))
         
         view.addSubview(searchDetailView)
         view.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         dump(detailData)
-       setupData()
+        setupData()
         
     }
     
     func setupData() {
         
         searchDetailView.detailName.text = detailData.name
-        
-
-//        if let images = imageOfBooks {
-//            detailView.detailBookImage.image = images
-//        }
+        //        if let images = imageOfBooks {
+        //            detailView.detailBookImage.image = images
+        //        }
         searchDetailView.categoriesLabel.text = detailData.categories[0].name
         
         if let address = detailData.location?.address {
@@ -48,7 +44,7 @@ class ListVenueDetailViewController: UIViewController {
         if let city = detailData.location?.city {
             searchDetailView.cityLabel.text = city
         }
-    
+        
     }
     private func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -67,9 +63,9 @@ class ListVenueDetailViewController: UIViewController {
             guard let names = searchDetailView.detailName.text else {
                 return print("no authors data")
             }
-//            guard let imageData = image.jpegData(compressionQuality: 0.5) else {
-//                return print("no image data")
-//            }
+            //            guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            //                return print("no image data")
+            //            }
             
             let favortie = Favorite.init(createdAt: timestamp, name: names, description: descriptions)
             
@@ -77,11 +73,6 @@ class ListVenueDetailViewController: UIViewController {
                 VenuesModel.addVenues(item: favortie)
                 showAlert(title: "Save", message: "Image Saved")
             }
-            
-            
-            
         }
     }
-    
-    
 }
