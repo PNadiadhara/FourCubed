@@ -8,11 +8,17 @@
 
 import UIKit
 
-class ListView: UIView {
+class ListVenueView: UIView {
     
     lazy var tableViewList: UITableView = {
         let tableView = UITableView()
         return tableView
+    }()
+    lazy var dismissButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = #colorLiteral(red: 0.5725490451, green: 0, blue: 0.2313725501, alpha: 1)
+        
+        return button
     }()
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)

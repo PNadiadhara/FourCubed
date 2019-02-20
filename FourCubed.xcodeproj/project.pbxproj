@@ -10,13 +10,22 @@
 		670B84F9220F656D00C8C0E5 /* SecretKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B84F8220F656D00C8C0E5 /* SecretKey.swift */; };
 		670B84FB220F706800C8C0E5 /* VenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B84FA220F706800C8C0E5 /* VenueView.swift */; };
 		670B8504220F733D00C8C0E5 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B8503220F733D00C8C0E5 /* TabBarViewController.swift */; };
-		67DA9A2C220F958A0041DEFD /* FavoriteCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA9A2B220F958A0041DEFD /* FavoriteCollectionViewController.swift */; };
-		67DA9A56221215230041DEFD /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA9A55221215230041DEFD /* ListViewController.swift */; };
-		67DA9A58221216320041DEFD /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA9A57221216320041DEFD /* ListView.swift */; };
-		67DA9A5A22121B3E0041DEFD /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA9A5922121B3E0041DEFD /* VenueCell.swift */; };
-		90D1727B22122EE00032114C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90D1727A22122EE00032114C /* SettingsViewController.swift */; };
+		6728D22C22161A08002E19D9 /* MapKitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6728D22B22161A08002E19D9 /* MapKitView.swift */; };
+		6728D22E22161BA6002E19D9 /* MapTableAndCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6728D22D22161BA6002E19D9 /* MapTableAndCollectionView.swift */; };
+		67DA9A56221215230041DEFD /* ListVenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA9A55221215230041DEFD /* ListVenueViewController.swift */; };
+		67DA9A58221216320041DEFD /* ListVenueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67DA9A57221216320041DEFD /* ListVenueView.swift */; };
+		90000621221362270060112C /* FavoriteCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90000620221362270060112C /* FavoriteCollectionViewController.swift */; };
+		900006282213681A0060112C /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900006272213681A0060112C /* FavoriteViewController.swift */; };
+		9000062A2213682A0060112C /* ListVenueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900006292213682A0060112C /* ListVenueDetailViewController.swift */; };
+		9000062C221368670060112C /* DataPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9000062B221368670060112C /* DataPersistenceManager.swift */; };
+		9000062E221368B30060112C /* FavoriteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9000062D221368B30060112C /* FavoriteView.swift */; };
+		90000630221368F50060112C /* ListVenueDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9000062F221368F50060112C /* ListVenueDetailView.swift */; };
+		90000632221369260060112C /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90000631221369260060112C /* FavoriteCollectionViewCell.swift */; };
+		903147E3221C79CC00033670 /* VenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903147E2221C79CC00033670 /* VenueModel.swift */; };
+		903147E5221C79E300033670 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903147E4221C79E300033670 /* Favorite.swift */; };
+		90FD8DBA22160852001EBE1A /* PhotoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8DB922160852001EBE1A /* PhotoAPIClient.swift */; };
 		BFECFECB220DF3B3001A4ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFECA220DF3B3001A4ABE /* AppDelegate.swift */; };
-		BFECFECD220DF3B3001A4ABE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFECC220DF3B3001A4ABE /* ViewController.swift */; };
+		BFECFECD220DF3B3001A4ABE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFECC220DF3B3001A4ABE /* MainViewController.swift */; };
 		BFECFED2220DF3B4001A4ABE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFECFED1220DF3B4001A4ABE /* Assets.xcassets */; };
 		BFECFED5220DF3B4001A4ABE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFECFED3220DF3B4001A4ABE /* LaunchScreen.storyboard */; };
 		BFECFEE1220E139B001A4ABE /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEE0220E139B001A4ABE /* Venue.swift */; };
@@ -27,20 +36,30 @@
 		BFECFEEF220E22DA001A4ABE /* VenueAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEEE220E22DA001A4ABE /* VenueAPIClient.swift */; };
 		BFECFEF1220E2E84001A4ABE /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEF0220E2E84001A4ABE /* String+Extensions.swift */; };
 		BFECFEF3220E2EC9001A4ABE /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */; };
+		BFFA9EEE22147B2B0072A95D /* ListVenueDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFFA9EED22147B2B0072A95D /* ListVenueDetailTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		670B84F8220F656D00C8C0E5 /* SecretKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecretKey.swift; sourceTree = "<group>"; };
 		670B84FA220F706800C8C0E5 /* VenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueView.swift; sourceTree = "<group>"; };
 		670B8503220F733D00C8C0E5 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		67DA9A2B220F958A0041DEFD /* FavoriteCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewController.swift; sourceTree = "<group>"; };
-		67DA9A55221215230041DEFD /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
-		67DA9A57221216320041DEFD /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		67DA9A5922121B3E0041DEFD /* VenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
-		90D1727A22122EE00032114C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6728D22B22161A08002E19D9 /* MapKitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapKitView.swift; sourceTree = "<group>"; };
+		6728D22D22161BA6002E19D9 /* MapTableAndCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTableAndCollectionView.swift; sourceTree = "<group>"; };
+		67DA9A55221215230041DEFD /* ListVenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVenueViewController.swift; sourceTree = "<group>"; };
+		67DA9A57221216320041DEFD /* ListVenueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVenueView.swift; sourceTree = "<group>"; };
+		90000620221362270060112C /* FavoriteCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewController.swift; sourceTree = "<group>"; };
+		900006272213681A0060112C /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		900006292213682A0060112C /* ListVenueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVenueDetailViewController.swift; sourceTree = "<group>"; };
+		9000062B221368670060112C /* DataPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistenceManager.swift; sourceTree = "<group>"; };
+		9000062D221368B30060112C /* FavoriteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteView.swift; sourceTree = "<group>"; };
+		9000062F221368F50060112C /* ListVenueDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVenueDetailView.swift; sourceTree = "<group>"; };
+		90000631221369260060112C /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
+		903147E2221C79CC00033670 /* VenueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueModel.swift; sourceTree = "<group>"; };
+		903147E4221C79E300033670 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
+		90FD8DB922160852001EBE1A /* PhotoAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPIClient.swift; sourceTree = "<group>"; };
 		BFECFEC7220DF3B3001A4ABE /* FourCubed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourCubed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFECFECA220DF3B3001A4ABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BFECFECC220DF3B3001A4ABE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BFECFECC220DF3B3001A4ABE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		BFECFED1220DF3B4001A4ABE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFECFED4220DF3B4001A4ABE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BFECFED6220DF3B4001A4ABE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -52,6 +71,7 @@
 		BFECFEEE220E22DA001A4ABE /* VenueAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueAPIClient.swift; sourceTree = "<group>"; };
 		BFECFEF0220E2E84001A4ABE /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
+		BFFA9EED22147B2B0072A95D /* ListVenueDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVenueDetailTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +89,11 @@
 			isa = PBXGroup;
 			children = (
 				670B84FA220F706800C8C0E5 /* VenueView.swift */,
-				67DA9A57221216320041DEFD /* ListView.swift */,
+				67DA9A57221216320041DEFD /* ListVenueView.swift */,
+				9000062F221368F50060112C /* ListVenueDetailView.swift */,
+				9000062D221368B30060112C /* FavoriteView.swift */,
+				6728D22B22161A08002E19D9 /* MapKitView.swift */,
+				6728D22D22161BA6002E19D9 /* MapTableAndCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -78,10 +102,11 @@
 			isa = PBXGroup;
 			children = (
 				670B8503220F733D00C8C0E5 /* TabBarViewController.swift */,
-				BFECFECC220DF3B3001A4ABE /* ViewController.swift */,
-				67DA9A55221215230041DEFD /* ListViewController.swift */,
-				67DA9A2B220F958A0041DEFD /* FavoriteCollectionViewController.swift */,
-				90D1727A22122EE00032114C /* SettingsViewController.swift */,
+				BFECFECC220DF3B3001A4ABE /* MainViewController.swift */,
+				67DA9A55221215230041DEFD /* ListVenueViewController.swift */,
+				900006292213682A0060112C /* ListVenueDetailViewController.swift */,
+				90000620221362270060112C /* FavoriteCollectionViewController.swift */,
+				900006272213681A0060112C /* FavoriteViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -89,9 +114,21 @@
 		67DA9A5B22121B460041DEFD /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				67DA9A5922121B3E0041DEFD /* VenueCell.swift */,
+				BFFA9EED22147B2B0072A95D /* ListVenueDetailTableViewCell.swift */,
+				90000631221369260060112C /* FavoriteCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		900006372214CDC90060112C /* Supporting  */ = {
+			isa = PBXGroup;
+			children = (
+				BFECFECA220DF3B3001A4ABE /* AppDelegate.swift */,
+				BFECFED1220DF3B4001A4ABE /* Assets.xcassets */,
+				BFECFED3220DF3B4001A4ABE /* LaunchScreen.storyboard */,
+				BFECFED6220DF3B4001A4ABE /* Info.plist */,
+			);
+			path = "Supporting ";
 			sourceTree = "<group>";
 		};
 		BFECFEBE220DF3B3001A4ABE = {
@@ -113,15 +150,12 @@
 		BFECFEC9220DF3B3001A4ABE /* FourCubed */ = {
 			isa = PBXGroup;
 			children = (
-				BFECFECA220DF3B3001A4ABE /* AppDelegate.swift */,
-				670B8500220F723400C8C0E5 /* Controller */,
-				BFECFED1220DF3B4001A4ABE /* Assets.xcassets */,
-				BFECFED3220DF3B4001A4ABE /* LaunchScreen.storyboard */,
-				BFECFED6220DF3B4001A4ABE /* Info.plist */,
+				BFECFEE7220E1FFC001A4ABE /* NetworkServices */,
+				BFECFEE2220E13A1001A4ABE /* Model */,
 				67DA9A5B22121B460041DEFD /* Cell */,
 				670B84FC220F707700C8C0E5 /* View */,
-				BFECFEE2220E13A1001A4ABE /* Model */,
-				BFECFEE7220E1FFC001A4ABE /* NetworkServices */,
+				670B8500220F723400C8C0E5 /* Controller */,
+				900006372214CDC90060112C /* Supporting  */,
 			);
 			path = FourCubed;
 			sourceTree = "<group>";
@@ -131,6 +165,7 @@
 			children = (
 				BFECFEE0220E139B001A4ABE /* Venue.swift */,
 				BFECFEE3220E13F3001A4ABE /* Photos.swift */,
+				903147E4221C79E300033670 /* Favorite.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -138,13 +173,16 @@
 		BFECFEE7220E1FFC001A4ABE /* NetworkServices */ = {
 			isa = PBXGroup;
 			children = (
+				9000062B221368670060112C /* DataPersistenceManager.swift */,
 				BFECFEEE220E22DA001A4ABE /* VenueAPIClient.swift */,
+				90FD8DB922160852001EBE1A /* PhotoAPIClient.swift */,
 				BFECFEE8220E207E001A4ABE /* AppError.swift */,
 				BFECFEEA220E20A8001A4ABE /* ImageHelper.swift */,
 				BFECFEE5220E1FE5001A4ABE /* NetworkHelper.swift */,
 				BFECFEF0220E2E84001A4ABE /* String+Extensions.swift */,
 				BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */,
 				670B84F8220F656D00C8C0E5 /* SecretKey.swift */,
+				903147E2221C79CC00033670 /* VenueModel.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -221,22 +259,34 @@
 			files = (
 				BFECFEE4220E13F3001A4ABE /* Photos.swift in Sources */,
 				670B84F9220F656D00C8C0E5 /* SecretKey.swift in Sources */,
+				90FD8DBA22160852001EBE1A /* PhotoAPIClient.swift in Sources */,
 				BFECFEF3220E2EC9001A4ABE /* Date+Extensions.swift in Sources */,
-				67DA9A58221216320041DEFD /* ListView.swift in Sources */,
+				9000062C221368670060112C /* DataPersistenceManager.swift in Sources */,
+				90000632221369260060112C /* FavoriteCollectionViewCell.swift in Sources */,
+				903147E5221C79E300033670 /* Favorite.swift in Sources */,
+				67DA9A58221216320041DEFD /* ListVenueView.swift in Sources */,
 				BFECFEEF220E22DA001A4ABE /* VenueAPIClient.swift in Sources */,
-				BFECFECD220DF3B3001A4ABE /* ViewController.swift in Sources */,
+				BFECFECD220DF3B3001A4ABE /* MainViewController.swift in Sources */,
+				BFFA9EEE22147B2B0072A95D /* ListVenueDetailTableViewCell.swift in Sources */,
+				90000621221362270060112C /* FavoriteCollectionViewController.swift in Sources */,
+				BFECFEEF220E22DA001A4ABE /* VenueAPIClient.swift in Sources */,
+				BFECFECD220DF3B3001A4ABE /* MainViewController.swift in Sources */,
+				9000062A2213682A0060112C /* ListVenueDetailViewController.swift in Sources */,
 				BFECFEF1220E2E84001A4ABE /* String+Extensions.swift in Sources */,
-				90D1727B22122EE00032114C /* SettingsViewController.swift in Sources */,
-				67DA9A2C220F958A0041DEFD /* FavoriteCollectionViewController.swift in Sources */,
 				BFECFEE9220E207E001A4ABE /* AppError.swift in Sources */,
 				BFECFEE6220E1FE5001A4ABE /* NetworkHelper.swift in Sources */,
-				67DA9A5A22121B3E0041DEFD /* VenueCell.swift in Sources */,
+				6728D22C22161A08002E19D9 /* MapKitView.swift in Sources */,
+				90000630221368F50060112C /* ListVenueDetailView.swift in Sources */,
 				670B8504220F733D00C8C0E5 /* TabBarViewController.swift in Sources */,
 				670B84FB220F706800C8C0E5 /* VenueView.swift in Sources */,
+				9000062E221368B30060112C /* FavoriteView.swift in Sources */,
+				900006282213681A0060112C /* FavoriteViewController.swift in Sources */,
+				6728D22E22161BA6002E19D9 /* MapTableAndCollectionView.swift in Sources */,
 				BFECFEE1220E139B001A4ABE /* Venue.swift in Sources */,
 				BFECFECB220DF3B3001A4ABE /* AppDelegate.swift in Sources */,
-				67DA9A56221215230041DEFD /* ListViewController.swift in Sources */,
+				67DA9A56221215230041DEFD /* ListVenueViewController.swift in Sources */,
 				BFECFEEB220E20A8001A4ABE /* ImageHelper.swift in Sources */,
+				903147E3221C79CC00033670 /* VenueModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,8 +425,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H6HD3SW977;
-				INFOPLIST_FILE = FourCubed/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/FourCubed/Supporting /Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,8 +443,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H6HD3SW977;
-				INFOPLIST_FILE = FourCubed/Info.plist;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "$(SRCROOT)/FourCubed/Supporting /Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

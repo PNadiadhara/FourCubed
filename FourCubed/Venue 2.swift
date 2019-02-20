@@ -20,14 +20,8 @@ struct Venue: Codable {
     let id: String
     let name: String
     let location : LocationData?
-//<<<<<<< HEAD
-//    var categories : [CatagoryData]
-//=======
-    let categories : [CatagoryData]
-    let referralId: String
-//>>>>>>> f5c03002fc6572ba7abd3fc0bf3e014919466d52
+    var categories : [CatagoryData]
 //    let delivery : DeliveryInfo?
-   
 }
 
 struct LocationData : Codable {
@@ -39,14 +33,15 @@ struct LocationData : Codable {
     let postalCode : String?
     let city : String
     let state : String
-    let country : String?
+    let country : String
     let formattedAddress : [String]
     let venuePage : [VenueId]?
-    
+   
     public var coordinate: CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(lat, lng)
     }
 }
+
 struct CatagoryData : Codable {
     let name : String
 }
@@ -66,5 +61,4 @@ struct IconInfo : Codable {
     let prefix : String
     let sizes : [Int]
     let name : String
-    }
-
+}
