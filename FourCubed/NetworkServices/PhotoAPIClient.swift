@@ -8,6 +8,10 @@
 
 import Foundation
 
+//<<<<<<< HEAD
+//final class PhotoAPIClient {
+//    static func searchPhoto(venueID: String, date: String,completionHandler: @escaping (AppError?, VenueData?) -> Void) {
+//=======
 //final class PhotoAPIClient {
 //    static func searchPhoto(venueID: String, date: String,completionHandler: @escaping (AppError?, [ItemDetail]?) -> Void) {
 //
@@ -33,6 +37,7 @@ import Foundation
 final class PhotoAPIClient {
     static func searchPhoto(venueID: String, date: String,completionHandler: @escaping (AppError?, [ItemDetail]?) -> Void) {
         
+//>>>>>>> f5c03002fc6572ba7abd3fc0bf3e014919466d52
         NetworkHelper.shared.performDataTask(endpointURLString: "https://api.foursquare.com/v2/venues/4bcca12bb6c49c7422169491/photos?v=\(venueID)&client_id=\(SecretKeys.ClientID)&client_secret=\(SecretKeys.APIKey)&v=\(date)",  httpMethod: "GET", httpBody: nil) { (error, data, response) in
             if let apiCallError = error {
                 print(apiCallError)
