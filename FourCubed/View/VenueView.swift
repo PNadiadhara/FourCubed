@@ -57,7 +57,9 @@ class VenueView: UIView {
     
     lazy var buttonFour: UIButton = {
         let button4 = UIButton()
+
         button4.setImage(UIImage(named: "cyclist"), for: .normal)
+
         button4.addTarget(self, action: #selector(danceButton), for: .touchUpInside)
         button4.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
         return button4
