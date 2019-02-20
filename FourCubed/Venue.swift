@@ -20,13 +20,10 @@ struct Venue: Codable {
     let id: String
     let name: String
     let location : LocationData?
-//<<<<<<< HEAD
-//    var categories : [CatagoryData]
-//=======
+
     let categories : [CatagoryData]
     let referralId: String
-//>>>>>>> f5c03002fc6572ba7abd3fc0bf3e014919466d52
-//    let delivery : DeliveryInfo?
+
    
 }
 
@@ -35,7 +32,7 @@ struct LocationData : Codable {
     let crossStreet : String?
     let lat : Double
     let lng : Double
-    let distance : Int
+    let distance : Int?
     let postalCode : String?
     let city : String?
     let state : String
