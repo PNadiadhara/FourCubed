@@ -47,11 +47,13 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        venueView.buttonFour.addTarget(self, action: #selector(centerOnUserButtonPressed), for: .touchUpInside)
         venueView.searchBarView.delegate = self
         venueView.mapViewKit.delegate = self
         title = "Search"
         self.view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: self, action: #selector(listPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Location", style: .plain, target: self, action: #selector(locationSetting))
        
         view.addSubview(venueView)
    
@@ -81,8 +83,63 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
         
     }
     
+    @objc func locationSetting () {
+        
+        
+        let locationActionSheet =  UIAlertController(title: "Location Settings", message: "Configure Location Information", preferredStyle: .actionSheet)
+        
+    
+        
+        let enableUserLocation = UIAlertAction(title: "Enable GPS", style: .default) { (alert: UIAlertAction!) in
+            print("enable user location")
+        }
+        let userEnterLocation = UIAlertAction(title: "Enter Location", style: .default) { (alert: UIAlertAction!) in
+            self.userEnterLocationInfo()
+            print("user enters location")
+        }
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+            self.dismiss(animated: true, completion: nil)
+        }
+
+        locationActionSheet.addAction(enableUserLocation)
+        locationActionSheet.addAction(userEnterLocation)
+        locationActionSheet.addAction(cancelAction)
+        
+        present(locationActionSheet, animated: true, completion: nil)
+        
+    }
+    
+    func userEnterLocationInfo(){
+        let alert = UIAlertController(title: "Enter Location",
+                                      message: "",
+                                      preferredStyle: .alert)
+        
+        alert.addTextField { (textField: UITextField) in
+            textField.keyboardAppearance = .dark
+            textField.keyboardType = .default
+            textField.autocorrectionType = .default
+            textField.placeholder = "Enter City Name"
+            textField.clearButtonMode = .whileEditing
+        }
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .default, handler: { (action) -> Void in
+            // Get 1st TextField's text
+            let textField = alert.textFields![0]
+            print(textField.text!)
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .destructive, handler: { (action) -> Void in })
+        
+        alert.addAction(submitAction)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+    
     @objc func centerOnUserButtonPressed() {
         venueView.mapViewKit.userLocation
+        print("button pressed")
     }
     
     
@@ -119,24 +176,7 @@ class MainViewController: UIViewController,  CLLocationManagerDelegate, UICollec
     
 
 
-//    GoogleAPIClient.getBookImages(keyword: cellToSet.book_details[0].primary_isbn13) { (error, data) in
-//    if let error = error {
-//    DispatchQueue.main.async {
-//    cell.bookImage.image = UIImage(named: "bookplaceholder")
-//    }
-//    print(error.errorMessage())
-//    } else if let data = data {
-//    ImageHelper.fetchImageFromNetwork(urlString: data[0].volumeInfo.imageLinks.smallThumbnail.absoluteString, completion: { (error, image) in
-//    if let error = error {
-//    print(error.errorMessage())
-//    } else if let image = image {
-//    DispatchQueue.main.async {
-//    cell.bookImage.image = image
-//    }
-//    }
-//    })
-//    }
-//    }
+
  
     
 
@@ -166,7 +206,7 @@ extension MainViewController: UISearchBarDelegate {
         userSearchQuery = venueView.searchBarView.text ?? "tacos"
         searchBar.resignFirstResponder()
     
-        //self.venueView.searchBarView.endEditing(true)
+        
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.venueView.searchBarView.endEditing(true)
