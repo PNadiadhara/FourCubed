@@ -54,7 +54,7 @@ class ListVenueDetailViewController: UIViewController {
     }
     
     @objc func favoriteButtonPressed() {
-        if let name = searchDetailView.detailName.text, let descriptions = searchDetailView.addressLabel.text {
+        if let name = searchDetailView.detailName.text, let address = searchDetailView.addressLabel.text, let image = searchDetailView.detailImage.image {
             let timestamp = Date.getISOTimestamp()
             
             guard let address = searchDetailView.addressLabel.text else {
@@ -63,15 +63,15 @@ class ListVenueDetailViewController: UIViewController {
             guard let names = searchDetailView.detailName.text else {
                 return print("no authors data")
             }
-            //            guard let imageData = image.jpegData(compressionQuality: 0.5) else {
-            //                return print("no image data")
-            //            }
+            guard let images = image.jpegData(compressionQuality: 0.5) else {
+                return print("no image data")
+            }
             
-            let favortie = Favorite.init(createdAt: timestamp, name: names, description: descriptions)
+            let favortie = Favorite.init(createdAt: timestamp, imageData: images, name: names, description: address)
             
             if let bookDetail = detailData {
                 VenuesModel.addVenues(item: favortie)
-                showAlert(title: "Save", message: "Image Saved")
+                showAlert(title: "Save", message: "Data Saved")
             }
         }
     }

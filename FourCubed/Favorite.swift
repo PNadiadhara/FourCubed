@@ -11,7 +11,7 @@ import Foundation
 struct Favorite: Codable {
     
     let createdAt: String
-    //let imageData: Data
+    let imageData: Data
     let name: String
     //let address: String
     let description: String?

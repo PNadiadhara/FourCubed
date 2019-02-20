@@ -35,7 +35,7 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListVenue(keyword: "tacos")
+        getListVenue(keyword: "Bar")
         view.addSubview(listView)
         view.backgroundColor = .white
         title = "Search for Venues"
@@ -113,7 +113,7 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
                     // let prefix = self.listPhoto.first?.items.first?.prefix ?? "no prefix"
                     if let prefix = image?.first?.prefix, let suffix = image?.first?.suffix {
                         // let suffix = self.listPhoto.first?.items.first?.suffix ?? "no suffix"
-                        let imageToSet = prefix + "300x500" + suffix
+                        let imageToSet = prefix + "300x300" + suffix
                         ImageHelper.shared.fetchImage(urlString: imageToSet) { (appError, image) in
                             if let appError = appError {
                                 print(appError.errorMessage())
