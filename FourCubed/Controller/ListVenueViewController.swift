@@ -9,7 +9,6 @@
 import UIKit
 import CoreLocation
 
-//
 class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     
     var listView = ListVenueView()
@@ -35,7 +34,7 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListVenue(keyword: "Bar")
+        getListVenue(keyword: userDefaultsSearchTerm())
         view.addSubview(listView)
         view.backgroundColor = .white
         title = "Search for Venues"
@@ -64,25 +63,14 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
             }
         }
     }
-    
-    //    func getListPhoto() {
-    //        guard let currentLocation = locationManager.location?.coordinate else {
-    //            print("no location found")
-    //            return
-    //        }
-    // let myCurrentLocation = "\(currentLocation.latitude),\(currentLocation.longitude)"
-    //        let date = Date.getISOTimestamp()
-    //        PhotoAPIClient.searchPhoto(venueID: listPhoto[0].items[0].id, date: date.formatISODateString(dateFormat: "yyyyMMDD")) { (appError, image) in
-    //            DispatchQueue.main.async {
-    //                if let appError = appError {
-    //                    print(appError.errorMessage())
-    //                }  else if let images = image {
-    //
-    //
-    //                }
-    //            }
-    //        }
-    //    }
+    func userDefaultsSearchTerm() -> String {
+        if let searchTermFromUserDefaults = UserDefaults.standard.object(forKey: UserDefaultsKey.searchTerm) as? String {
+            return searchTermFromUserDefaults
+        } else {
+            return "sushi"
+        }
+    }
+
 }
 
 extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate , UISearchBarDelegate{

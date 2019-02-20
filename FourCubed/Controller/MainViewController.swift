@@ -85,6 +85,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         
     }
     
+    
     @objc func locationSetting () {
         
         

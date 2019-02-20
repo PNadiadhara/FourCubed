@@ -61,6 +61,8 @@ class ListVenueDetailViewController: UIViewController {
         
     }
     
+    
+    
     func setupData() {
         
         searchDetailView.detailName.text = detailData.name
