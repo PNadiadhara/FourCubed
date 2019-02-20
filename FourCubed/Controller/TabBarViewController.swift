@@ -15,14 +15,14 @@ class TabBarViewController: UITabBarController {
 //
     var secondViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
 
-   var thirdViewController = UINavigationController.init(rootViewController: SettingsViewController())
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setViewControllers([mainViewController, secondViewController ,thirdViewController], animated: true)
+        setViewControllers([mainViewController, secondViewController], animated: true)
         mainViewController.tabBarItem = UITabBarItem(title: "Search", image: UIImage(named: "search"), tag: 0)
         secondViewController.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(named: "favorite"), tag: 1)
-        thirdViewController.tabBarItem = UITabBarItem(title: "Setting", image: UIImage(named: "settings"), tag: 2)
+
     }
 }
 
