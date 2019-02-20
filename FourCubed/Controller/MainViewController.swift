@@ -81,10 +81,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         let locationActionSheet =  UIAlertController(title: "Location Settings", message: "Configure Location Information", preferredStyle: .actionSheet)
         
     
-        
-        let enableUserLocation = UIAlertAction(title: "Enable GPS", style: .default) { (alert: UIAlertAction!) in
-            print("enable user location")
-        }
+       
         let userEnterLocation = UIAlertAction(title: "Enter Location", style: .default) { (alert: UIAlertAction!) in
             self.userEnterLocationInfo()
             print("user enters location")
@@ -95,7 +92,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
             self.dismiss(animated: true, completion: nil)
         }
 
-        locationActionSheet.addAction(enableUserLocation)
+        
         locationActionSheet.addAction(userEnterLocation)
         locationActionSheet.addAction(cancelAction)
         
