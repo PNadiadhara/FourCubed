@@ -11,6 +11,7 @@ import CoreLocation
 
 class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     
+    var keyWord: String?
     var listView = ListVenueView()
     var listData = [Venue]() {
         didSet {
@@ -20,6 +21,8 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     var listPhoto = [PhotoInfo]()
+    
+    
     
     lazy var searchController: UISearchController = {
         let search = UISearchController(searchResultsController: nil)
@@ -34,7 +37,11 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListVenue(keyword: userDefaultsSearchTerm())
+        if let keyword = keyWord {
+            getListVenue(keyword: keyWord!)
+        } else {
+            getListVenue(keyword: "Bar")
+        }
         view.addSubview(listView)
         view.backgroundColor = .white
         title = "Search for Venues"
@@ -61,13 +68,6 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
                     //dump(self.venues)
                 }
             }
-        }
-    }
-    func userDefaultsSearchTerm() -> String {
-        if let searchTermFromUserDefaults = UserDefaults.standard.object(forKey: UserDefaultsKey.searchTerm) as? String {
-            return searchTermFromUserDefaults
-        } else {
-            return "sushi"
         }
     }
 

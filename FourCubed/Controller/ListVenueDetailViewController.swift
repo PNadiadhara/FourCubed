@@ -28,7 +28,7 @@ class ListVenueDetailViewController: UIViewController {
         self.searchDetailView.mapButton.addTarget(self, action: #selector(mapButtonPressed), for: .touchUpInside)
         view.addSubview(searchDetailView)
         view.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-       // dump(detailData)
+       
         
         setupData()
         
@@ -54,10 +54,8 @@ class ListVenueDetailViewController: UIViewController {
         ]
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = detailData.name//"Place Name"
+        mapItem.name = detailData.name
         mapItem.openInMaps(launchOptions: options)
-        
-        
         
     }
     
@@ -112,6 +110,3 @@ class ListVenueDetailViewController: UIViewController {
 }
 
 
-func mapButtonPressed() {
-    
-}
