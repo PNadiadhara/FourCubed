@@ -23,7 +23,6 @@
 		90000632221369260060112C /* FavoriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90000631221369260060112C /* FavoriteCollectionViewCell.swift */; };
 		903147E3221C79CC00033670 /* VenueModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903147E2221C79CC00033670 /* VenueModel.swift */; };
 		903147E5221C79E300033670 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 903147E4221C79E300033670 /* Favorite.swift */; };
-		90F31BE1221E00E20025B3E9 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F31BE0221E00E20025B3E9 /* UserDefaultKey.swift */; };
 		90FD8DBA22160852001EBE1A /* PhotoAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FD8DB922160852001EBE1A /* PhotoAPIClient.swift */; };
 		BFECFECB220DF3B3001A4ABE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFECA220DF3B3001A4ABE /* AppDelegate.swift */; };
 		BFECFECD220DF3B3001A4ABE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFECFECC220DF3B3001A4ABE /* MainViewController.swift */; };
@@ -57,7 +56,6 @@
 		90000631221369260060112C /* FavoriteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCollectionViewCell.swift; sourceTree = "<group>"; };
 		903147E2221C79CC00033670 /* VenueModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueModel.swift; sourceTree = "<group>"; };
 		903147E4221C79E300033670 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
-		90F31BE0221E00E20025B3E9 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
 		90FD8DB922160852001EBE1A /* PhotoAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAPIClient.swift; sourceTree = "<group>"; };
 		BFECFEC7220DF3B3001A4ABE /* FourCubed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourCubed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFECFECA220DF3B3001A4ABE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,7 +183,6 @@
 				BFECFEF2220E2EC9001A4ABE /* Date+Extensions.swift */,
 				670B84F8220F656D00C8C0E5 /* SecretKey.swift */,
 				903147E2221C79CC00033670 /* VenueModel.swift */,
-				90F31BE0221E00E20025B3E9 /* UserDefaultKey.swift */,
 			);
 			path = NetworkServices;
 			sourceTree = "<group>";
@@ -283,7 +280,6 @@
 				670B8504220F733D00C8C0E5 /* TabBarViewController.swift in Sources */,
 				670B84FB220F706800C8C0E5 /* VenueView.swift in Sources */,
 				9000062E221368B30060112C /* FavoriteView.swift in Sources */,
-				90F31BE1221E00E20025B3E9 /* UserDefaultKey.swift in Sources */,
 				900006282213681A0060112C /* FavoriteViewController.swift in Sources */,
 				6728D22E22161BA6002E19D9 /* MapTableAndCollectionView.swift in Sources */,
 				BFECFEE1220E139B001A4ABE /* Venue.swift in Sources */,
