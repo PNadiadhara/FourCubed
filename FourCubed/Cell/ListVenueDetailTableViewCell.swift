@@ -39,6 +39,7 @@ class ListVenueDetailTableViewCell: UITableViewCell {
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = UIColor(red: 0.9686, green: 1, blue: 1, alpha: 1.0) 
         setConstraints()
     }
     required init?(coder aDecoder: NSCoder) {
