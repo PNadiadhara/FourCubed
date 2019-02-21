@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 
 class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
-    
+   
     var listView = ListVenueView()
     var listData = [Venue]() {
         didSet {
@@ -32,6 +32,7 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     var searchingVenues = false
     var sortWhenNotSearching = [Venue]()
     var sortWhenSearching = [Venue]()
+   
     
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
@@ -58,7 +59,6 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
                 if let appError = appError {
                     print(appError.errorMessage())
                 }   else if let data = data {
-                    
                     self.listData = data
                     //dump(self.venues)
                 }
@@ -78,14 +78,21 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     func filter() -> Bool {
         return !searchIsEmpty()
     }
+//     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+//        filterVenues = listData.filter({( name : Venue) -> Bool in
+//            let value = name.name.lowercased().contains(searchText.lowercased())
+//            return value
+//        })
+//        listView.tableViewList.reloadData()
+//     }
 }
+
 
 extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate , UISearchBarDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Place holder until segue is coordinated with Jose
         if filter() {
             return filterVenues.count
         }
@@ -148,6 +155,4 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
         listView.tableViewList.reloadData()
         }
     }
-
-
 
