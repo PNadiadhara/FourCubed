@@ -9,9 +9,14 @@
 import UIKit
 import CoreLocation
 
+
+class ListVenueViewController: UIViewController, CLLocationManagerDelegate, UISearchControllerDelegate {
+   
+
 class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     
     var keyWord: String?
+
     var listView = ListVenueView()
     var listData = [Venue]() {
         didSet {
@@ -31,17 +36,30 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
         search.searchBar.delegate = self
         return search
     }()
-    var filterVenues = [String]()
+    var filterVenues = [Venue]() {
+        didSet {
+            listView.tableViewList.reloadData()
+        }
+    }
+
     var searchingVenues = false
+    var sortWhenNotSearching = [Venue]()
+    var sortWhenSearching = [Venue]()
+   
     
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        getListVenue(keyword: userDefaultsSearchTerm())
+        //self.filterVenues = listData
+
         if let keyword = keyWord {
             getListVenue(keyword: keyword)
         } else {
             getListVenue(keyword: "Bar")
         }
+
         view.addSubview(listView)
         view.backgroundColor = .white
         title = "Search for Venues"
@@ -70,33 +88,58 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
                 if let appError = appError {
                     print(appError.errorMessage())
                 }   else if let data = data {
-                    
-                    self.listData = data
+                    self.listData = data.sorted(by: { $0.name < $1.name})
+//                    self.filterVenues = data.sorted(by: { $0.name < $1.name})
+                   // self.sortWhenNotSearching = self.listData.sorted(by: { $0.name < $1.name})
                     //dump(self.venues)
                 }
             }
         }
     }
 
+    func userDefaultsSearchTerm() -> String {
+        if let searchTermFromUserDefaults = UserDefaults.standard.object(forKey: UserDefaultsKey.searchTerm) as? String {
+            return searchTermFromUserDefaults
+       } else {
+           return ""
+        }
+    }
+    func searchIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    func filter() -> Bool {
+        return !searchIsEmpty()
+    }
+
 }
 
-extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate , UISearchBarDelegate{
+
+extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Place holder until segue is coordinated with Jose
+        if filter() {
+            return filterVenues.count
+        }
         return listData.count
-    }
+   
+   }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//          sortWhenNotSearching = listData.sorted(by: { $0.name < $1.name})
+//          sortWhenSearching  = filterVenues.sorted(by: { $0.name < $1.name})
+         var _: Venue
+         if filter() {
+            _ = filterVenues[indexPath.row]
+         } else {
+            _ = listData[indexPath.row]
+        }
         // Place holder until segue is coordinated with Jose
         guard let cell = listView.tableViewList.dequeueReusableCell(withIdentifier: "SearchDeatil", for: indexPath) as? ListVenueDetailTableViewCell else {return UITableViewCell()}
         let listVenues = listData[indexPath.row]
         cell.venueName.text = listVenues.name
         cell.venueAddress.text = listVenues.location?.address
         cell.venueCatagories.text = listVenues.categories[0].name
-        
-    
         let date = Date.getISOTimestamp()
         let id = listVenues.referralId.replacingOccurrences(of: "v-", with: "")
         
@@ -106,9 +149,7 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
                     print(appError.errorMessage())
                 }
                 if image != nil {
-                    
                     if let prefix = image?.first?.prefix, let suffix = image?.first?.suffix {
-                        
                         let imageToSet = prefix + "300x300" + suffix
                         ImageHelper.shared.fetchImage(urlString: imageToSet) { (appError, image) in
                             if let appError = appError {
@@ -116,7 +157,6 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
                                 
                             }else if let image = image {
                                 cell.venueImage.image = image
-                                
                             }
                         }
                     }
@@ -127,27 +167,17 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let listDetailCell = listData[indexPath.row]
-        
         guard let cell = tableView.cellForRow(at: indexPath) as? ListVenueDetailTableViewCell else { return }
-        
         let detailListVC = ListVenueDetailViewController()
         detailListVC.detailData = listDetailCell
         detailListVC.venueImages = cell.venueImage.image
-
         self.navigationController?.pushViewController(detailListVC, animated: true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-        if searchText.isEmpty {
-            searchingVenues = false
-            listView.tableViewList.reloadData()
-        } else {
-            searchingVenues = true
-            listData = listData.filter({ $0.name.lowercased().contains(searchText.lowercased())})
-            listView.tableViewList.reloadData()
-            }
+        filterVenues = listData.filter({( venue : Venue) -> Bool in
+            let value = venue.name.lowercased().contains(searchText.lowercased())
+            return value
+        })
         }
     }
-
-
 

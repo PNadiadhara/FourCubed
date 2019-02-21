@@ -15,11 +15,15 @@ class ListVenueDetailViewController: UIViewController {
     //    var listDetailData: Venue!
     var detailPhoto: PhotoInfo!
     public var detailData: Venue!
-       public var venueImages: UIImage?
+    public var venueImages: UIImage?
     public var detailOfAddress: String?
     public var detailOfCategories: String?
     public var detailOfCity: String?
     var locationManager = CLLocationManager()
+    
+    var venueTitle = String()
+    var venueAddres = String()
+    var venueDescription = String()
     
     
     override func viewDidLoad() {
@@ -28,15 +32,15 @@ class ListVenueDetailViewController: UIViewController {
         self.searchDetailView.mapButton.addTarget(self, action: #selector(mapButtonPressed), for: .touchUpInside)
         view.addSubview(searchDetailView)
         view.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
-       
-        
+
+       // dump(detailData)
+
+      
         setupData()
-        
     }
     @objc func mapButtonPressed() {
         openMapForPlace()
     }
-
     func openMapForPlace() {
         guard let currentLocation = locationManager.location?.coordinate else {
             print("no location found")
@@ -56,13 +60,10 @@ class ListVenueDetailViewController: UIViewController {
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = detailData.name
         mapItem.openInMaps(launchOptions: options)
-        
+
+
     }
-    
-    
-    
     func setupData() {
-        
         searchDetailView.detailName.text = detailData.name
                 if let images = venueImages {
                     searchDetailView.detailImage.image = images
@@ -76,7 +77,6 @@ class ListVenueDetailViewController: UIViewController {
         if let city = detailData.location?.city {
             searchDetailView.cityLabel.text = city
         }
-        
     }
     private func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -88,7 +88,6 @@ class ListVenueDetailViewController: UIViewController {
     @objc func favoriteButtonPressed() {
         if let name = searchDetailView.detailName.text, let address = searchDetailView.addressLabel.text, let image = searchDetailView.detailImage.image {
             let timestamp = Date.getISOTimestamp()
-            
             guard let address = searchDetailView.addressLabel.text else {
                 return print("no descriptions data")
             }
@@ -98,15 +97,18 @@ class ListVenueDetailViewController: UIViewController {
             guard let images = image.jpegData(compressionQuality: 0.5) else {
                 return print("no image data")
             }
-            
             let favortie = Favorite.init(createdAt: timestamp, imageData: images, name: names, description: address)
-            
-            if let bookDetail = detailData {
+            if detailData != nil {
                 VenuesModel.addVenues(item: favortie)
-                showAlert(title: "Save", message: "Data Saved")
+                showAlert(title: "\(detailData.name)", message: "will be saved in your collection")
             }
         }
     }
 }
+
+func mapButtonPressed() {
+    
+}
+
 
 

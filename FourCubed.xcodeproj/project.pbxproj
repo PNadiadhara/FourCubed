@@ -425,7 +425,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2X456QR9DN;
+				DEVELOPMENT_TEAM = H6HD3SW977;
 				INFOPLIST_FILE = "$(SRCROOT)/FourCubed/Supporting /Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -443,7 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2X456QR9DN;
+				DEVELOPMENT_TEAM = H6HD3SW977;
 				INFOPLIST_FILE = "$(SRCROOT)/FourCubed/Supporting /Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

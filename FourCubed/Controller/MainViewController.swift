@@ -46,15 +46,23 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.addSubview(venueView)
+
         venueView.buttonFour.addTarget(self, action: #selector(centerOnUserButtonPressed), for: .touchUpInside)
         venueView.searchBarView.delegate = self
         venueView.mapViewKit.delegate = self
+
+        self.view.backgroundColor = .white
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: self, action: #selector(listPressed))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Location", style: .plain, target: self, action: #selector(locationSetting))
+        view.addSubview(venueView)
+
         self.view.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "list"), style: .plain, target: self, action: #selector(listPressed))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Location", style: .plain, target: self, action: #selector(locationSetting))
+
         
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -96,7 +104,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         navigationController?.pushViewController(listVC, animated: true)
     }
     
-    
     @objc func listPressed() {
         let listVC = ListVenueViewController()
         listVC.modalTransitionStyle = .crossDissolve
@@ -104,7 +111,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         listVC.keyWord = userSearchQuery
         navigationController?.pushViewController(listVC, animated: true)
     }
-    
 
     @objc func locationSetting () {
         let locationActionSheet =  UIAlertController(title: "Location Settings", message: "Configure Location Information", preferredStyle: .actionSheet)
@@ -112,6 +118,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
             self.userEnterLocationInfo()
             print("user enters location")
         }
+
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             self.dismiss(animated: true, completion: nil)
         }
@@ -146,7 +153,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
     }
-    
+
     @objc func centerOnUserButtonPressed() {
         venueView.mapViewKit.userLocation
         print("button pressed")
@@ -174,7 +181,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
     }
     
     func getVenueInArea(location: String, keyword: String) {
-        
+
         let date = Date.getISOTimestamp()
         VenueAPIClient.searchLocation(location: location, keyword: keyword, date: date.formatISODateString(dateFormat: "yyyyMMDD")) { (appError, data) in
             DispatchQueue.main.async {
@@ -186,7 +193,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
             }
         }
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         //        let currentLocation = venueView.mapViewKit.userLocation
         //        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
@@ -196,7 +203,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         //        guard let currentLocation = locations.last else { return }
         //        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         //        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
-        
+
     }
 }
 
@@ -205,7 +212,7 @@ extension MainViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         userSearchQuery = venueView.searchBarView.text ?? "tacos"
         searchBar.resignFirstResponder()
-        
+
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.venueView.searchBarView.endEditing(true)
