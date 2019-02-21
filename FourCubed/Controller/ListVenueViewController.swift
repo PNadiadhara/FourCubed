@@ -11,10 +11,6 @@ import CoreLocation
 
 
 class ListVenueViewController: UIViewController, CLLocationManagerDelegate, UISearchControllerDelegate {
-   
-
-class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
-    
     var keyWord: String?
 
     var listView = ListVenueView()
@@ -26,9 +22,7 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     var listPhoto = [PhotoInfo]()
-    
-    
-    
+
     lazy var searchController: UISearchController = {
         let search = UISearchController(searchResultsController: nil)
         search.dimsBackgroundDuringPresentation = false
@@ -50,9 +44,6 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        getListVenue(keyword: userDefaultsSearchTerm())
-        //self.filterVenues = listData
 
         if let keyword = keyWord {
             getListVenue(keyword: keyword)
@@ -89,21 +80,13 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
                     print(appError.errorMessage())
                 }   else if let data = data {
                     self.listData = data.sorted(by: { $0.name < $1.name})
-//                    self.filterVenues = data.sorted(by: { $0.name < $1.name})
-                   // self.sortWhenNotSearching = self.listData.sorted(by: { $0.name < $1.name})
-                    //dump(self.venues)
+
                 }
             }
         }
     }
 
-    func userDefaultsSearchTerm() -> String {
-        if let searchTermFromUserDefaults = UserDefaults.standard.object(forKey: UserDefaultsKey.searchTerm) as? String {
-            return searchTermFromUserDefaults
-       } else {
-           return ""
-        }
-    }
+ 
     func searchIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
@@ -126,8 +109,6 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate,U
    
    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//          sortWhenNotSearching = listData.sorted(by: { $0.name < $1.name})
-//          sortWhenSearching  = filterVenues.sorted(by: { $0.name < $1.name})
          var _: Venue
          if filter() {
             _ = filterVenues[indexPath.row]
@@ -180,4 +161,5 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate,U
         })
         }
     }
+
 

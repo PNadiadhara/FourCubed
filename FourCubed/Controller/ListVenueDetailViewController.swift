@@ -12,7 +12,7 @@ import MapKit
 class ListVenueDetailViewController: UIViewController {
     
     let searchDetailView = ListVenueDetailView()
-    //    var listDetailData: Venue!
+
     var detailPhoto: PhotoInfo!
     public var detailData: Venue!
     public var venueImages: UIImage?
@@ -33,9 +33,6 @@ class ListVenueDetailViewController: UIViewController {
         view.addSubview(searchDetailView)
         view.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
 
-       // dump(detailData)
-
-      
         setupData()
     }
     @objc func mapButtonPressed() {
@@ -106,9 +103,7 @@ class ListVenueDetailViewController: UIViewController {
     }
 }
 
-func mapButtonPressed() {
-    
-}
+
 
 
 
