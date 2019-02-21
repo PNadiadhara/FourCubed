@@ -144,12 +144,9 @@ extension ListVenueDetailView {
     func setMapButton() {
         addSubview(mapButton)
         mapButton.translatesAutoresizingMaskIntoConstraints = false
-       // mapButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         mapButton.topAnchor.constraint(equalTo: cityLabel.bottomAnchor, constant: 10).isActive = true
         mapButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 50).isActive = true
         mapButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50).isActive = true
-        //mapButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -0).isActive = true
-        
     }
     
 }

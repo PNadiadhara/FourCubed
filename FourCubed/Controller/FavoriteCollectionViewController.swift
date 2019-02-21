@@ -17,7 +17,8 @@ class FavoriteCollectionViewController: UIViewController, UIActionSheetDelegate 
             }
         }
     }
-    
+     var listVC = ListVenueViewController()
+    var array = [String]()
     let favoritesView = FavoriteView()
     var favoriteVenues = VenuesModel.getVenues()
     var saveVenues = VenuesModel.saveVenues()
@@ -42,6 +43,7 @@ class FavoriteCollectionViewController: UIViewController, UIActionSheetDelegate 
         favoritesView.favoriteCollectionView.reloadData()
         reload()
         delete()
+         array = ["Restaurant", "Bar", "Shopping", "Club", "Barber/Salon", "Gym/Yoga"]
     }
     @objc func setButton(sender: UIButton) {
          let index = sender.tag
@@ -78,11 +80,14 @@ extension FavoriteCollectionViewController : UICollectionViewDataSource, UIColle
         cell.button.addTarget(self, action: #selector(setButton(sender:)), for: .touchUpInside)
         let favorite = favoriteVenues[indexPath.row]
         let favoriteDetail = FavoriteCollectionViewCell()
-        favoriteDetail.detailName.text = favorite.name
-        favoriteDetail.addressLabel.text = favorite.description
-//        favoriteDetail.addressLabel.text = favorite.location?.address
-//        favoriteDetail.categoriesLabel.text = favorite.categories[0].name
+
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+       guard let cell = self.favoritesView.favoriteCollectionView.cellForItem(at: indexPath) as? FavoriteCollectionViewCell else {return}
+        navigationController?.pushViewController(listVC, animated: true)
+        
     }
 }
 

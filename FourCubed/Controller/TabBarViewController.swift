@@ -14,7 +14,6 @@ class TabBarViewController: UITabBarController {
     var secondViewController = UINavigationController.init(rootViewController: FavoriteCollectionViewController())
 
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -15,14 +15,7 @@ class MapKitView: UIView {
         let mapView = MKMapView()
         return mapView
     }()
-    
-//    lazy var centerOnUser: UIButton = {
-//        let button = UIButton()
-//        button.setImage(UIImage(named: "home"), for: .normal)
-//        button.addTarget(self, action: #selector(centerMapOnUser), for: .touchUpInside)
-//        return button
-//    }()
-    
+
     @objc func centerMapOnUser(){
         
     }
@@ -31,7 +24,6 @@ class MapKitView: UIView {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
         setUpMapKit()
-        //setUpCenterOnUserButton()
         
     }
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +31,6 @@ class MapKitView: UIView {
     }
     private func commonInit() {
         setUpMapKit()
-        //setUpCenterOnUserButton()
     }
     private func setUpMapKit() {
         addSubview(mapViewKit)
@@ -50,15 +41,4 @@ class MapKitView: UIView {
         mapViewKit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -0).isActive = true
         mapViewKit.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 1).isActive = true
     }
-    
-//    private func setUpCenterOnUserButton () {
-//        addSubview(centerOnUser)
-//
-//        centerOnUser.translatesAutoresizingMaskIntoConstraints = false
-//
-//        [centerOnUser.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 22),
-//         centerOnUser.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -22),
-//         centerOnUser.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 200)
-//         ].forEach{$0.isActive = true}
-//    }
 }
