@@ -38,7 +38,7 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let keyword = keyWord {
-            getListVenue(keyword: keyWord!)
+            getListVenue(keyword: keyword)
         } else {
             getListVenue(keyword: "Bar")
         }
@@ -49,6 +49,13 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
         listView.tableViewList.delegate = self
         listView.tableViewList.register(ListVenueDetailTableViewCell.self, forCellReuseIdentifier: "SearchDeatil")
         navigationItem.searchController = searchController
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if let keyword = keyWord {
+            getListVenue(keyword: keyword)
+        } else {
+            getListVenue(keyword: "Bar")
+        }
     }
     
     func getListVenue(keyword: String) {
