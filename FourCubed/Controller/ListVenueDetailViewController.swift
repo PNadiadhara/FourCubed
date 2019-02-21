@@ -59,7 +59,6 @@ class ListVenueDetailViewController: UIViewController {
         mapItem.openInMaps(launchOptions: options)
     }
     func setupData() {
-        
         searchDetailView.detailName.text = detailData.name
                 if let images = venueImages {
                     searchDetailView.detailImage.image = images

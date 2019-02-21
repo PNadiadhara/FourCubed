@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
+class ListVenueViewController: UIViewController, CLLocationManagerDelegate, UISearchControllerDelegate {
    
     var listView = ListVenueView()
     var listData = [Venue]() {
@@ -28,7 +28,12 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
         search.searchBar.delegate = self
         return search
     }()
-    var filterVenues = [Venue]()
+    var filterVenues = [Venue]() {
+        didSet {
+            listView.tableViewList.reloadData()
+        }
+    }
+
     var searchingVenues = false
     var sortWhenNotSearching = [Venue]()
     var sortWhenSearching = [Venue]()
@@ -38,6 +43,7 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         getListVenue(keyword: userDefaultsSearchTerm())
+        //self.filterVenues = listData
         view.addSubview(listView)
         view.backgroundColor = .white
         title = "Search for Venues"
@@ -59,7 +65,9 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
                 if let appError = appError {
                     print(appError.errorMessage())
                 }   else if let data = data {
-                    self.listData = data
+                    self.listData = data.sorted(by: { $0.name < $1.name})
+//                    self.filterVenues = data.sorted(by: { $0.name < $1.name})
+                   // self.sortWhenNotSearching = self.listData.sorted(by: { $0.name < $1.name})
                     //dump(self.venues)
                 }
             }
@@ -68,8 +76,8 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     func userDefaultsSearchTerm() -> String {
         if let searchTermFromUserDefaults = UserDefaults.standard.object(forKey: UserDefaultsKey.searchTerm) as? String {
             return searchTermFromUserDefaults
-        } else {
-            return "sushi"
+       } else {
+           return ""
         }
     }
     func searchIsEmpty() -> Bool {
@@ -78,17 +86,10 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
     func filter() -> Bool {
         return !searchIsEmpty()
     }
-//     func filterContentForSearchText(_ searchText: String, scope: String = "All") {
-//        filterVenues = listData.filter({( name : Venue) -> Bool in
-//            let value = name.name.lowercased().contains(searchText.lowercased())
-//            return value
-//        })
-//        listView.tableViewList.reloadData()
-//     }
 }
 
 
-extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate , UISearchBarDelegate{
+extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -97,10 +98,11 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
             return filterVenues.count
         }
         return listData.count
-    }
+   
+   }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         sortWhenNotSearching = listData.sorted(by: { $0.name < $1.name})
-         sortWhenSearching  = filterVenues.sorted(by: { $0.name < $1.name})
+//          sortWhenNotSearching = listData.sorted(by: { $0.name < $1.name})
+//          sortWhenSearching  = filterVenues.sorted(by: { $0.name < $1.name})
          var _: Venue
          if filter() {
             _ = filterVenues[indexPath.row]
@@ -130,7 +132,6 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
                                 
                             }else if let image = image {
                                 cell.venueImage.image = image
-                                
                             }
                         }
                     }
@@ -148,11 +149,10 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
         self.navigationController?.pushViewController(detailListVC, animated: true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filterVenues = listData.filter({( name : Venue) -> Bool in
-            let value = name.name.lowercased().contains(searchText.lowercased())
+        filterVenues = listData.filter({( venue : Venue) -> Bool in
+            let value = venue.name.lowercased().contains(searchText.lowercased())
             return value
         })
-        listView.tableViewList.reloadData()
         }
     }
 

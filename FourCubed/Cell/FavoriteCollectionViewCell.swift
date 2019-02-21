@@ -8,12 +8,7 @@
 
 import UIKit
 
-protocol FavoriteViewCellDelegate: AnyObject{
-    func detailButtonPress()
-}
-
 class FavoriteCollectionViewCell: UICollectionViewCell {
-    var delegate: FavoriteViewCellDelegate?
     
     lazy var image: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "placeholder"))
@@ -22,13 +17,32 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
     lazy var button: UIButton = {
         let detailBottun = UIButton()
         detailBottun.setImage(UIImage(named: "delete"), for: .normal)
-        detailBottun.addTarget(self, action: #selector(detailButtonPress), for: .touchUpInside)
         detailBottun.setTitleColor(.black, for: .normal)
         return detailBottun
     }()
-    @objc func detailButtonPress() {
-        delegate?.detailButtonPress()
-    }
+    lazy var detailName: UILabel = {
+        let label = UILabel()
+        label.text = "hey"
+        label.textAlignment = .center
+        label.textColor = .black
+        label.numberOfLines = 0
+        
+        return label
+    }()
+    lazy var addressLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Address"
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
+    lazy var categoriesLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Address"
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
 //    override init(frame: CGRect) {
 //        super.init(frame: UIScreen.main.bounds)
 //        updateQuiz()
@@ -46,6 +60,9 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = .white
         addSubview(image)
         addSubview(button)
+        addSubview(detailName)
+        addSubview(addressLabel)
+        addSubview(categoriesLabel)
         setImageConstraints()
     }
     required init?(coder aDecoder: NSCoder) {
@@ -69,6 +86,23 @@ class FavoriteCollectionViewCell: UICollectionViewCell {
         button.topAnchor.constraint(equalTo: topAnchor, constant: -10).isActive = true
         button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5).isActive = true
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        detailName.translatesAutoresizingMaskIntoConstraints = false
+        detailName.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 1).isActive = true
+        detailName.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
+        detailName.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.topAnchor.constraint(equalTo: detailName.bottomAnchor, constant: 2).isActive = true
+        addressLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
+        addressLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        addressLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
+        categoriesLabel.translatesAutoresizingMaskIntoConstraints = false
+        categoriesLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 2).isActive = true
+        categoriesLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 11).isActive = true
+        categoriesLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -11).isActive = true
+        categoriesLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
     }
 }
 

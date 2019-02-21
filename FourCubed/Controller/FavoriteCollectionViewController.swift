@@ -17,10 +17,17 @@ class FavoriteCollectionViewController: UIViewController, UIActionSheetDelegate 
             }
         }
     }
+    
     let favoritesView = FavoriteView()
     var favoriteVenues = VenuesModel.getVenues()
     var saveVenues = VenuesModel.saveVenues()
     var venueCell = FavoriteCollectionViewCell()
+    
+     var detailData: Venue!
+     var venueImages: UIImage?
+     var detailOfAddress: String?
+     var detailOfCategories: String?
+     var detailOfCity: String?
     
     override func viewWillAppear(_ animated: Bool) {
         reload()
@@ -68,7 +75,14 @@ extension FavoriteCollectionViewController : UICollectionViewDataSource, UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = favoritesView.favoriteCollectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteCell", for: indexPath) as? FavoriteCollectionViewCell else {return UICollectionViewCell()}
-//        let venue = venueData[indexPath.row]
+        cell.button.addTarget(self, action: #selector(setButton(sender:)), for: .touchUpInside)
+        let favorite = favoriteVenues[indexPath.row]
+        let favoriteDetail = FavoriteCollectionViewCell()
+        favoriteDetail.detailName.text = favorite.name
+        favoriteDetail.addressLabel.text = favorite.description
+//        favoriteDetail.addressLabel.text = favorite.location?.address
+//        favoriteDetail.categoriesLabel.text = favorite.categories[0].name
         return cell
     }
 }
+
