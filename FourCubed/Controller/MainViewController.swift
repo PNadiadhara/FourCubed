@@ -45,10 +45,11 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
     var userChoseNewSearchArea = false
     private var userChosenArea = String()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        venueView.buttonFour.addTarget(self, action: #selector(centerOnUserButtonPressed), for: .touchUpInside)
+        //venueView.buttonFour.addTarget(self, action: #selector(centerOnUserButtonPressed), for: .touchUpInside)
         
         venueView.searchBarView.delegate = self
         venueView.mapViewKit.delegate = self
@@ -147,10 +148,10 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         
     }
     
-    @objc func centerOnUserButtonPressed() {
-        venueView.mapViewKit.userLocation
-        print("button pressed")
-    }
+//    @objc func centerOnUserButtonPressed() {
+//        venueView.mapViewKit.userLocation
+//        print("button pressed")
+//    }
     
     
     
@@ -192,12 +193,7 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         }
     }
     
-    
-    
-    
-    
-    
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         //        let currentLocation = venueView.mapViewKit.userLocation
         //        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
@@ -207,10 +203,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate, UICollect
         //        guard let currentLocation = locations.last else { return }
         //        let myCurrentRegion = MKCoordinateRegion(center: currentLocation.coordinate, latitudinalMeters: 1000, longitudinalMeters: 1000)
         //        venueView.mapViewKit.setRegion(myCurrentRegion, animated: true)
-        
-        
-        
-        
         
     }
 }
@@ -247,18 +239,28 @@ extension MainViewController : MKMapViewDelegate {
         print("Annotation slected")
         let detailVC = ListVenueDetailViewController()
         guard let annotation = view.annotation else { fatalError("annotation nil") }
-        
+                //detailVC.detailData = view.annotation
+//                detailVC.detailOfAddress = detailVC.detailData.location?.address ?? "N/A"
+//                detailVC.detailOfCategories = detailVC.detailData.categories[0].name
+//                detailVC.detailOfCity = detailVC.detailData.location?.city
         
         detailVC.modalTransitionStyle = .crossDissolve
         detailVC.modalPresentationStyle = .overCurrentContext
-        detailVC.detailOfAddress = detailVC.detailData.location?.address ?? "N/A"
-        detailVC.detailOfCategories = detailVC.detailData.categories[0].name
-        detailVC.detailOfCity = detailVC.detailData.location?.city
         
         
         //        self.present(detailVC, animated: true, completion: nil) // doing monorlly using this type to call
         navigationController?.pushViewController(detailVC, animated: true) // doing navigation using this type so button will show up on the top right or left 
         mapView.deselectAnnotation(annotation, animated: true)
+        
+//        let index = annotationData.index{ $0.location.lat == annotation.coordinate.latitude && $0.location.lng == annotation.coordinate.longitude }
+//        
+//        if let venueIndex = index {
+//            let venue = annotationData[venueIndex]
+//            appMapView.nameLabel.text = venue.name
+//            appMapView.addressVenue.text = venue.location.formattedAddress.first!
+//        } else {
+//            print("no index")
+//        }
     }
     
     
