@@ -23,13 +23,6 @@ struct ItemDetail: Codable {
     let createdAt: Int
     let prefix: String
     let suffix: String
-//<<<<<<< HEAD
-//    let width: Int
-//    let height: Int
-//=======
-//    let width: Int
-//    let height: Int
-    
-//>>>>>>> f5c03002fc6572ba7abd3fc0bf3e014919466d52
+
 }
 

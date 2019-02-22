@@ -15,10 +15,16 @@ class MapKitView: UIView {
         let mapView = MKMapView()
         return mapView
     }()
+
+    @objc func centerMapOnUser(){
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: UIScreen.main.bounds)
         commonInit()
         setUpMapKit()
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

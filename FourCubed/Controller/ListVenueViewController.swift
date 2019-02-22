@@ -9,9 +9,10 @@
 import UIKit
 import CoreLocation
 
-//
-class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
-    
+
+class ListVenueViewController: UIViewController, CLLocationManagerDelegate, UISearchControllerDelegate {
+    var keyWord: String?
+
     var listView = ListVenueView()
     var listData = [Venue]() {
         didSet {
@@ -21,7 +22,7 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     var listPhoto = [PhotoInfo]()
-    
+
     lazy var searchController: UISearchController = {
         let search = UISearchController(searchResultsController: nil)
         search.dimsBackgroundDuringPresentation = false
@@ -29,13 +30,27 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
         search.searchBar.delegate = self
         return search
     }()
-    var filterVenues = [String]()
+    var filterVenues = [Venue]() {
+        didSet {
+            listView.tableViewList.reloadData()
+        }
+    }
+
     var searchingVenues = false
+    var sortWhenNotSearching = [Venue]()
+    var sortWhenSearching = [Venue]()
+   
     
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        getListVenue(keyword: "Bar")
+
+        if let keyword = keyWord {
+            getListVenue(keyword: keyword)
+        } else {
+            getListVenue(keyword: "Bar")
+        }
+
         view.addSubview(listView)
         view.backgroundColor = .white
         title = "Search for Venues"
@@ -43,6 +58,13 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
         listView.tableViewList.delegate = self
         listView.tableViewList.register(ListVenueDetailTableViewCell.self, forCellReuseIdentifier: "SearchDeatil")
         navigationItem.searchController = searchController
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if let keyword = keyWord {
+            getListVenue(keyword: keyword)
+        } else {
+            getListVenue(keyword: "Bar")
+        }
     }
     
     func getListVenue(keyword: String) {
@@ -57,52 +79,50 @@ class ListVenueViewController: UIViewController, CLLocationManagerDelegate {
                 if let appError = appError {
                     print(appError.errorMessage())
                 }   else if let data = data {
-                    
-                    self.listData = data
-                    //dump(self.venues)
+                    self.listData = data.sorted(by: { $0.name < $1.name})
+
                 }
             }
         }
     }
-    
-    //    func getListPhoto() {
-    //        guard let currentLocation = locationManager.location?.coordinate else {
-    //            print("no location found")
-    //            return
-    //        }
-    // let myCurrentLocation = "\(currentLocation.latitude),\(currentLocation.longitude)"
-    //        let date = Date.getISOTimestamp()
-    //        PhotoAPIClient.searchPhoto(venueID: listPhoto[0].items[0].id, date: date.formatISODateString(dateFormat: "yyyyMMDD")) { (appError, image) in
-    //            DispatchQueue.main.async {
-    //                if let appError = appError {
-    //                    print(appError.errorMessage())
-    //                }  else if let images = image {
-    //
-    //
-    //                }
-    //            }
-    //        }
-    //    }
+
+ 
+    func searchIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    func filter() -> Bool {
+        return !searchIsEmpty()
+    }
+
 }
 
-extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate , UISearchBarDelegate{
+
+extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate,UISearchBarDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Place holder until segue is coordinated with Jose
+        if filter() {
+            return filterVenues.count
+        }
         return listData.count
-    }
+   
+   }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+         var _: Venue
+         if filter() {
+            _ = filterVenues[indexPath.row]
+         } else {
+            _ = listData[indexPath.row]
+        }
         // Place holder until segue is coordinated with Jose
         guard let cell = listView.tableViewList.dequeueReusableCell(withIdentifier: "SearchDeatil", for: indexPath) as? ListVenueDetailTableViewCell else {return UITableViewCell()}
         let listVenues = listData[indexPath.row]
         cell.venueName.text = listVenues.name
         cell.venueAddress.text = listVenues.location?.address
         cell.venueCatagories.text = listVenues.categories[0].name
-    
         let date = Date.getISOTimestamp()
-        let id = listVenues.referralId.replacingOccurrences(of: "v-", with: "") //?? "no id"
+        let id = listVenues.referralId.replacingOccurrences(of: "v-", with: "")
         
         PhotoAPIClient.searchPhoto(venueID: id, date: date.formatISODateString(dateFormat: "yyyyMMDD")) { (appError, image) in
             DispatchQueue.main.async {
@@ -110,9 +130,7 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
                     print(appError.errorMessage())
                 }
                 if image != nil {
-                    // let prefix = self.listPhoto.first?.items.first?.prefix ?? "no prefix"
                     if let prefix = image?.first?.prefix, let suffix = image?.first?.suffix {
-                        // let suffix = self.listPhoto.first?.items.first?.suffix ?? "no suffix"
                         let imageToSet = prefix + "300x300" + suffix
                         ImageHelper.shared.fetchImage(urlString: imageToSet) { (appError, image) in
                             if let appError = appError {
@@ -120,7 +138,6 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
                                 
                             }else if let image = image {
                                 cell.venueImage.image = image
-                                
                             }
                         }
                     }
@@ -131,23 +148,18 @@ extension ListVenueViewController : UITableViewDataSource, UITableViewDelegate ,
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let listDetailCell = listData[indexPath.row]
+        guard let cell = tableView.cellForRow(at: indexPath) as? ListVenueDetailTableViewCell else { return }
         let detailListVC = ListVenueDetailViewController()
         detailListVC.detailData = listDetailCell
-        //  presentedViewController(ListVenueDetailViewController.self,animated: true)
+        detailListVC.venueImages = cell.venueImage.image
         self.navigationController?.pushViewController(detailListVC, animated: true)
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        print(searchText)
-        if searchText.isEmpty {
-            searchingVenues = false
-            listView.tableViewList.reloadData()
-        } else {
-            searchingVenues = true
-            listData = listData.filter({ $0.name.lowercased().contains(searchText.lowercased())})
-            listView.tableViewList.reloadData()
-            }
+        filterVenues = listData.filter({( venue : Venue) -> Bool in
+            let value = venue.name.lowercased().contains(searchText.lowercased())
+            return value
+        })
         }
     }
-
 
 
